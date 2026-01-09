@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Start your funding application. 2–3 minutes. Clear next steps." />
+  <title>TBD — Get Funded</title>
+
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-local UI (keep shared stable) */
+    .hub{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 14px; align-items:start; }
+    .formCard{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+    }
+    .sideCard{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 14px 40px rgba(11,16,34,.06);
+      padding: 16px;
+      position: sticky;
+      top: 84px;
+    }
+
+    .kicker{
+      font-size:.78rem; color: rgba(11,16,34,.6);
+      font-weight: 900; letter-spacing:.08em; text-transform: uppercase;
+    }
+    .title{
+      font-weight: 950; letter-spacing:-.03em; font-size: 1.35rem; margin: 6px 0 8px;
+    }
+    .sub{ color: rgba(11,16,34,.72); margin:0; max-width: 70ch; }
+
+    .progress{
+      margin-top: 12px;
+      border-radius: 999px;
+      height: 10px;
+      background: rgba(11,16,34,.08);
+      overflow:hidden;
+      border: 1px solid rgba(11,16,34,.06);
+    }
+    .progress__bar{
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary2) 70%);
+      transition: width 220ms var(--ease);
+    }
+    .stepMeta{
+      display:flex; justify-content:space-between; gap: 10px; flex-wrap: wrap;
+      margin-top: 10px;
+      color: rgba(11,16,34,.62);
+      font-weight: 800;
+      font-size: .92rem;
+    }
+
+    .step{ display:none; margin-top: 14px; }
+    .step.is-active{ display:block; }
+
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field{ display:grid; gap:8px; margin-bottom: 12px; }
+    .labelRow{ display:flex; align-items:center; justify-content:space-between; gap: 10px; }
+    .label{ font-weight: 900; letter-spacing:-.01em; }
+    .hint{ color: rgba(11,16,34,.55); font-weight: 800; font-size: .9rem; }
+    .input, .select, .textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,16,34,.12);
+      background: rgba(255,255,255,.92);
+      font-weight: 750;
+      outline: none;
+    }
+    .textarea{ min-height: 96px; resize: vertical; }
+
+    .tip{
+      display:flex; gap: 10px; align-items:flex-start;
+      border-radius: 16px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.78);
+      padding: 12px;
+      margin-top: 6px;
+      color: rgba(11,16,34,.74);
+      font-size: .92rem;
+    }
+    .tip b{ color: rgba(11,16,34,.92); }
+
+    .why{
+      position: relative;
+      display:inline-flex; align-items:center; justify-content:center;
+      width: 22px; height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,16,34,.14);
+      background: rgba(255,255,255,.85);
+      font-weight: 950;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .why::after{
+      content: attr(data-tip);
+      position:absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(100% + 10px);
+      width: min(320px, 70vw);
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,16,34,.12);
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 14px 40px rgba(11,16,34,.10);
+      color: rgba(11,16,34,.80);
+      font-weight: 750;
+      font-size: .9rem;
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity 140ms var(--ease), transform 140ms var(--ease);
+      transform-origin: bottom center;
+    }
+    .why:hover::after, .why:focus::after{
+      opacity: 1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    .actions{
+      display:flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 14px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .leftActions{ display:flex; gap: 10px; flex-wrap: wrap; }
+    .btn--subtle{
+      background: rgba(255,255,255,.75);
+      border-color: rgba(11,16,34,.12);
+      box-shadow: none;
+    }
+
+    .err{
+      display:none;
+      margin-top: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(239,68,68,.22);
+      background: rgba(239,68,68,.08);
+      color: rgba(153,27,27,.95);
+      padding: 10px 12px;
+      font-weight: 850;
+    }
+    .err.is-on{ display:block; }
+
+    .trust{
+      display:grid; gap: 10px;
+      margin-top: 12px;
+    }
+    .trustItem{
+      border-radius: 16px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.78);
+      padding: 12px;
+    }
+    .trustItem .t{ font-weight: 950; letter-spacing:-.02em; }
+    .trustItem .m{ color: rgba(11,16,34,.70); margin-top: 4px; font-size:.92rem; }
+
+    .ok{
+      display:none;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(34,197,94,.22);
+      background: rgba(34,197,94,.08);
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .ok.is-on{ display:block; }
+    .ok h3{ margin: 0 0 8px; font-weight: 950; letter-spacing:-.02em; }
+    .ok p{ margin: 0; color: rgba(11,16,34,.74); }
+    .nextlist{ margin: 10px 0 0 18px; color: rgba(11,16,34,.74); }
+    .nextlist li{ margin: 6px 0; }
+
+    @media (max-width: 980px){
+      .hub{ grid-template-columns: 1fr; }
+      .sideCard{ position: static; top:auto; }
+      .grid2{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="header" data-elevate-on-scroll>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="TBD Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">TBD</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__group">
+          <button class="nav__trigger" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-capital">
+            Capital Menu <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="menu-capital" class="menu" data-menu>
+            <a class="menu__item" href="options.html">Pick Your Capital</a>
+            <a class="menu__item" href="calculator.html">Funding Fit Calculator</a>
+            <a class="menu__item" href="playbooks.html">Growth Playbooks</a>
+          </div>
+        </div>
+
+        <a class="nav__link" href="process.html">The Process</a>
+        <a class="nav__link" href="proof.html">Receipts</a>
+        <a class="nav__link" href="about.html">Why Us</a>
+      </nav>
+
+      <div class="header__cta">
+        <div class="micro"> $50k–$500k • Fast approvals • No bank games</div>
+        <a class="btn btn--primary" href="get-funded.html">
+          Get Funded <span class="btn__hint">2–3 min</span>
+        </a>
+
+        <button class="burger" type="button" aria-label="Open menu" data-burger aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__panel">
+        <div class="drawer__top">
+          <span class="drawer__title">Navigate</span>
+          <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="drawer__stack">
+          <a class="drawer__link" href="options.html">Pick Your Capital</a>
+          <a class="drawer__link" href="calculator.html">Funding Fit Calculator</a>
+          <a class="drawer__link" href="playbooks.html">Growth Playbooks</a>
+          <a class="drawer__link" href="process.html">The Process</a>
+          <a class="drawer__link" href="proof.html">Deals + Receipts</a>
+          <a class="drawer__link" href="about.html">Humans, Not a Bank</a>
+          <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+      <div class="drawer__backdrop" data-drawer-close></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            2–3 minutes. No commitment.
+          </div>
+
+          <h1 class="h1">Get Funded. <span class="ink">Fast.</span></h1>
+          <p class="lead">Start here. We review for fit and tell you the best lane after we look.</p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#apply">Start application</a>
+            <a class="btn btn--ghost" href="process.html">What happens next</a>
+          </div>
+
+          <div class="goodline" style="margin-top:12px;">
+            <span class="spark" aria-hidden="true"></span>
+            <span class="mini"><b>Privacy:</b> we use your info to route funding options — not to spam you.</span>
+          </div>
+        </div>
+
+        <div class="hero__panel reveal">
+          <div class="panel">
+            <div class="panel__kicker">Before you start</div>
+            <div class="panel__title">Have statements ready if you want speed.</div>
+            <div class="panel__body">
+              You can still apply without them — but statements are the fastest way to unlock better lanes.
+            </div>
+
+            <div class="panel__actions">
+              <a class="btn btn--primary btn--full" href="#apply">Start now</a>
+              <a class="btn btn--ghost btn--full" href="calculator.html">Run the Calculator</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- APPLICATION HUB -->
+    <section class="section" id="apply">
+      <div class="container">
+        <div class="hub">
+          <!-- Form -->
+          <div class="formCard reveal">
+            <div class="kicker">Application</div>
+            <div class="title">Start your funding file</div>
+            <p class="sub">Four quick steps. We only ask what helps underwriting make a decision.</p>
+
+            <div class="progress" aria-label="Progress">
+              <div class="progress__bar" data-progress></div>
+            </div>
+            <div class="stepMeta">
+              <div><b>Step:</b> <span data-step-label>1</span>/4</div>
+              <div><b>Time:</b> ~2–3 minutes</div>
+            </div>
+
+            <div class="err" data-error role="alert"></div>
+
+            <form id="fundingForm" novalidate>
+              <!-- STEP 1 -->
+              <section class="step is-active" data-step="1" aria-label="Step 1">
+                <div class="grid2">
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="bizName">Business name</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="So we can package your file correctly and avoid duplicate entries.">?</button>
+                    </div>
+                    <input class="input" id="bizName" name="bizName" placeholder="Acme LLC" autocomplete="organization" required />
+                    <div class="hint">Legal name preferred.</div>
+                  </div>
+
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="industry">Industry</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="Different industries fit different lanes. This helps us route you faster.">?</button>
+                    </div>
+                    <select class="select" id="industry" name="industry" required>
+                      <option value="" selected disabled>Select</option>
+                      <option>DTC / Ecommerce</option>
+                      <option>B2B SaaS</option>
+                      <option>Agency / Services</option>
+                      <option>Retail</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid2">
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="state">State</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="Lanes and partners can vary by state. This avoids sending you to dead ends.">?</button>
+                    </div>
+                    <input class="input" id="state" name="state" placeholder="CA" autocomplete="address-level1" required />
+                    <div class="hint">Two-letter abbreviation (e.g., CA, TX, NY).</div>
+                  </div>
+
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="timeInBiz">Time in business</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="History expands your lane options and improves terms.">?</button>
+                    </div>
+                    <select class="select" id="timeInBiz" name="timeInBiz" required>
+                      <option value="" selected disabled>Select</option>
+                      <option>0–5 months</option>
+                      <option>6–11 months</option>
+                      <option>12+ months</option>
+                      <option>24+ months</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="tip">
+                  <div aria-hidden="true">⟡</div>
+                  <div><b>Speed hint:</b> If you’re 6+ months with consistent revenue, options expand quickly.</div>
+                </div>
+              </section>
+
+              <!-- STEP 2 -->
+              <section class="step" data-step="2" aria-label="Step 2">
+                <div class="grid2">
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="monthlyRevenue">Monthly revenue (approx)</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="Revenue is the cleanest signal of repayment capacity. This affects range + lane.">?</button>
+                    </div>
+                    <input class="input" id="monthlyRevenue" name="monthlyRevenue" inputmode="numeric" placeholder="50000" required />
+                    <div class="hint">Just the number. Example: 50000 for $50k.</div>
+                  </div>
+
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="fundingGoal">Funding goal</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="This helps us pick a lane that can actually clear and not stall.">?</button>
+                    </div>
+                    <input class="input" id="fundingGoal" name="fundingGoal" inputmode="numeric" placeholder="150000" required />
+                    <div class="hint">Between $50k and $500k target.</div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="labelRow">
+                    <label class="label" for="useOfFunds">Primary use of funds</label>
+                    <button class="why" type="button" tabindex="0"
+                      data-tip="The right lane for inventory is not always the right lane for expansion.">?</button>
+                  </div>
+                  <select class="select" id="useOfFunds" name="useOfFunds" required>
+                    <option value="" selected disabled>Select</option>
+                    <option>Inventory / Cashflow</option>
+                    <option>Growth (Ads + Hiring)</option>
+                    <option>Runway Bridge</option>
+                    <option>Expansion / Large purchase</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="hint">One selection is enough.</div>
+                </div>
+
+                <div class="tip">
+                  <div aria-hidden="true">▦</div>
+                  <div><b>Operator truth:</b> mismatch repayment cadence to your cash cycle and you’ll feel it fast.</div>
+                </div>
+              </section>
+
+              <!-- STEP 3 -->
+              <section class="step" data-step="3" aria-label="Step 3">
+                <div class="grid2">
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="creditRange">Credit range</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="Different lanes underwrite differently. We use this to avoid lanes that stall.">?</button>
+                    </div>
+                    <select class="select" id="creditRange" name="creditRange" required>
+                      <option value="" selected disabled>Select</option>
+                      <option>Below 600</option>
+                      <option>600–659</option>
+                      <option>660–719</option>
+                      <option>720+</option>
+                      <option>Prefer not to say</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="statementsReady">Statements ready?</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="Statements unlock speed + better options. Not required to start, but highly recommended.">?</button>
+                    </div>
+                    <select class="select" id="statementsReady" name="statementsReady" required>
+                      <option value="" selected disabled>Select</option>
+                      <option>Yes — ready</option>
+                      <option>No — not yet</option>
+                      <option>Partially</option>
+                    </select>
+                    <div class="hint">3–6 months is typical.</div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="labelRow">
+                    <label class="label" for="notes">Anything we should know?</label>
+                    <button class="why" type="button" tabindex="0"
+                      data-tip="Optional. A 1–2 line note can help us package your file better.">?</button>
+                  </div>
+                  <textarea class="textarea" id="notes" name="notes" placeholder="Example: seasonal revenue, big PO, timing constraints, etc."></textarea>
+                  <div class="hint">Optional. Keep it short.</div>
+                </div>
+
+                <div class="tip">
+                  <div aria-hidden="true">⟡</div>
+                  <div><b>Pro move:</b> if your ask is $250k+, add a 3–5 line use-of-funds plan. It wins time.</div>
+                </div>
+              </section>
+
+              <!-- STEP 4 -->
+              <section class="step" data-step="4" aria-label="Step 4">
+                <div class="grid2">
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="fullName">Your name</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="So we can follow up with the right person.">?</button>
+                    </div>
+                    <input class="input" id="fullName" name="fullName" placeholder="Jordan Smith" autocomplete="name" required />
+                  </div>
+
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="email">Email</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="We send next steps and any doc requests here.">?</button>
+                    </div>
+                    <input class="input" id="email" name="email" placeholder="you@company.com" autocomplete="email" required />
+                  </div>
+                </div>
+
+                <div class="grid2">
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="phone">Phone</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="Fast approvals often require a quick confirmation. We keep it tight.">?</button>
+                    </div>
+                    <input class="input" id="phone" name="phone" placeholder="(555) 555-5555" autocomplete="tel" required />
+                  </div>
+
+                  <div class="field">
+                    <div class="labelRow">
+                      <label class="label" for="consent">Contact preference</label>
+                      <button class="why" type="button" tabindex="0"
+                        data-tip="We respect your time. Pick how you want to communicate.">?</button>
+                    </div>
+                    <select class="select" id="consent" name="consent" required>
+                      <option value="" selected disabled>Select</option>
+                      <option>Email</option>
+                      <option>Text</option>
+                      <option>Call</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="tip">
+                  <div aria-hidden="true">🔒</div>
+                  <div><b>Privacy:</b> We use your info to evaluate and route funding options. We don’t sell your data for fun.</div>
+                </div>
+              </section>
+
+              <!-- Controls -->
+              <div class="actions">
+                <div class="leftActions">
+                  <button class="btn btn--subtle" type="button" data-back>Back</button>
+                  <button class="btn btn--ghost" type="button" data-save>Save & continue later</button>
+                </div>
+
+                <div class="leftActions">
+                  <button class="btn btn--primary" type="button" data-next>Next</button>
+                  <button class="btn btn--primary" type="submit" data-submit style="display:none;">
+                    Get Funded <span class="btn__hint">Submit</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Success -->
+              <div class="ok" data-success>
+                <h3>Received. Next: we review + route you to the right lane.</h3>
+                <p>If you want speed, have <b>3–6 months bank statements</b> ready. We’ll tell you what we need next.</p>
+                <ul class="nextlist">
+                  <li>We’ll confirm fit + lane</li>
+                  <li>We’ll request essentials (only what matters)</li>
+                  <li>You’ll see options, not guesswork</li>
+                </ul>
+                <div class="section__cta" style="margin-top:12px;">
+                  <a class="btn btn--primary" href="process.html">See the process</a>
+                  <a class="btn btn--ghost" href="calculator.html">Run the calculator</a>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sidebar trust + summary -->
+          <aside class="sideCard reveal" aria-label="Trust and summary">
+            <div class="kicker">Why this works</div>
+            <div class="title">We package your file like a winner.</div>
+            <p class="sub">Underwriting doesn’t reward vibes. It rewards signal. We help you show signal fast.</p>
+
+            <div class="trust">
+              <div class="trustItem">
+                <div class="t">Secure handling</div>
+                <div class="m">We treat your info like it matters (because it does).</div>
+              </div>
+              <div class="trustItem">
+                <div class="t">No spam energy</div>
+                <div class="m">You’ll get next steps — not a newsletter loop.</div>
+              </div>
+              <div class="trustItem">
+                <div class="t">Clear next steps</div>
+                <div class="m">You’ll always know what happens next and why.</div>
+              </div>
+            </div>
+
+            <div class="tip" style="margin-top:12px;">
+              <div aria-hidden="true">⚡</div>
+              <div><b>Speed lever:</b> statements ready → more lanes → faster decisions.</div>
+            </div>
+
+            <div class="section__cta" style="margin-top:12px;">
+              <a class="btn btn--ghost btn--full" href="proof.html">See receipts</a>
+              <a class="btn btn--ghost btn--full" href="options.html">Compare lanes</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container cta-band__inner reveal">
+        <div>
+          <h2 class="h2">You’re one clean application away from momentum.</h2>
+          <p class="muted">Start now. We’ll route you after review.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="#apply">Start application</a>
+          <a class="btn btn--ghost" href="process.html">What happens next</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="actionbar__item" href="calculator.html">
+      <span class="actionbar__icon" aria-hidden="true">⌁</span>
+      Calculator
+    </a>
+    <a class="actionbar__item" href="options.html">
+      <span class="actionbar__icon" aria-hidden="true">▦</span>
+      Options
+    </a>
+    <a class="actionbar__item" href="proof.html">
+      <span class="actionbar__icon" aria-hidden="true">★</span>
+      Receipts
+    </a>
+    <a class="actionbar__item actionbar__item--primary" href="get-funded.html">
+      <span class="actionbar__icon" aria-hidden="true">→</span>
+      Get Funded
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">TBD</span>
+        </div>
+        <p class="muted">Fast business funding for operators. $50k–$500k. Decisions in days, not months.</p>
+      </div>
+
+      <div>
+        <div class="footer__h">Capital</div>
+        <a class="footer__a" href="options.html">Pick Your Capital</a>
+        <a class="footer__a" href="calculator.html">Funding Fit Calculator</a>
+        <a class="footer__a" href="playbooks.html">Growth Playbooks</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Company</div>
+        <a class="footer__a" href="process.html">The Process</a>
+        <a class="footer__a" href="proof.html">Deals + Receipts</a>
+        <a class="footer__a" href="about.html">Why Us</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Legal</div>
+        <a class="footer__a" href="privacy.html">Privacy</a>
+        <a class="footer__a" href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="muted">© <span data-year></span> TBD. Built for operators.</div>
+      <div class="muted footer__note">
+        Disclaimer: This site is for informational purposes. If applicable, we connect businesses to funding options and partners.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+
+  <script>
+    (function(){
+      const form = document.getElementById('fundingForm');
+      if(!form) return;
+
+      const steps = Array.from(form.querySelectorAll('.step'));
+      const nextBtn = form.querySelector('[data-next]');
+      const backBtn = form.querySelector('[data-back]');
+      const saveBtn = form.querySelector('[data-save]');
+      const submitBtn = form.querySelector('[data-submit]');
+      const progress = document.querySelector('[data-progress]');
+      const stepLabel = document.querySelector('[data-step-label]');
+      const errorBox = form.querySelector('[data-error]');
+      const success = form.querySelector('[data-success]');
+
+      let idx = 0;
+
+      const requiredByStep = [
+        ['bizName','industry','state','timeInBiz'],
+        ['monthlyRevenue','fundingGoal','useOfFunds'],
+        ['creditRange','statementsReady'],
+        ['fullName','email','phone','consent']
+      ];
+
+      function showError(msg){
+        errorBox.textContent = msg;
+        errorBox.classList.add('is-on');
+      }
+      function clearError(){
+        errorBox.textContent = '';
+        errorBox.classList.remove('is-on');
+      }
+
+      function showStep(i){
+        steps.forEach((s, n) => s.classList.toggle('is-active', n === i));
+        idx = i;
+
+        const pct = Math.round(((idx) / (steps.length - 1)) * 100);
+        if (progress) progress.style.width = pct + '%';
+        if (stepLabel) stepLabel.textContent = String(idx + 1);
+
+        backBtn.disabled = idx === 0;
+
+        // toggle next/submit
+        if (idx === steps.length - 1){
+          nextBtn.style.display = 'none';
+          submitBtn.style.display = 'inline-flex';
+        } else {
+          nextBtn.style.display = 'inline-flex';
+          submitBtn.style.display = 'none';
+        }
+        clearError();
+      }
+
+      function getField(name){
+        return document.getElementById(name);
+      }
+
+      function isEmail(v){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+
+      function normalizeNumber(val){
+        const n = String(val).replace(/[^\d]/g,'');
+        return n ? parseInt(n,10) : NaN;
+      }
+
+      function validateStep(i){
+        const ids = requiredByStep[i] || [];
+        for (const id of ids){
+          const el = getField(id);
+          if (!el) continue;
+          const v = (el.value || '').trim();
+          if (!v){
+            showError('Please complete the highlighted fields before continuing.');
+            el.focus();
+            return false;
+          }
+          if (id === 'email' && !isEmail(v)){
+            showError('Please enter a valid email.');
+            el.focus();
+            return false;
+          }
+          if (id === 'monthlyRevenue' || id === 'fundingGoal'){
+            const num = normalizeNumber(v);
+            if (!Number.isFinite(num) || num <= 0){
+              showError('Please enter a valid number (example: 50000).');
+              el.focus();
+              return false;
+            }
+          }
+          if (id === 'state' && v.length < 2){
+            showError('Please enter a valid state abbreviation (e.g., CA).');
+            el.focus();
+            return false;
+          }
+        }
+        clearError();
+        return true;
+      }
+
+      function collect(){
+        const data = {};
+        const els = form.querySelectorAll('input, select, textarea');
+        els.forEach(el => {
+          if (!el.name) return;
+          data[el.name] = (el.value || '').trim();
+        });
+        return data;
+      }
+
+      function saveDraft(){
+        const data = collect();
+        localStorage.setItem('tbd_funding_draft', JSON.stringify({ data, savedAt: Date.now() }));
+      }
+      function loadDraft(){
+        try{
+          const raw = localStorage.getItem('tbd_funding_draft');
+          if(!raw) return;
+          const parsed = JSON.parse(raw);
+          const data = parsed.data || {};
+          Object.keys(data).forEach(k => {
+            const el = form.querySelector(`[name="${k}"]`);
+            if (el) el.value = data[k];
+          });
+        } catch(e){}
+      }
+
+      // Controls
+      nextBtn.addEventListener('click', () => {
+        if (!validateStep(idx)) return;
+        showStep(Math.min(idx + 1, steps.length - 1));
+      });
+
+      backBtn.addEventListener('click', () => {
+        showStep(Math.max(idx - 1, 0));
+      });
+
+      saveBtn.addEventListener('click', () => {
+        saveDraft();
+        showError('Saved. You can come back later on this device and continue.');
+        setTimeout(clearError, 2200);
+      });
+
+      // Submit (no backend yet: show success + persist draft)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!validateStep(idx)) return;
+
+        // Save draft anyway (useful for wiring later)
+        saveDraft();
+
+        // Show success state
+        success.classList.add('is-on');
+        form.querySelectorAll('.step, .actions, .err').forEach(el => el.style.display = 'none');
+
+        // Set progress to 100%
+        if (progress) progress.style.width = '100%';
+        if (stepLabel) stepLabel.textContent = '4';
+
+        // If you wire a backend later, you can POST collect() here.
+      });
+
+      // Init
+      loadDraft();
+      showStep(0);
+    })();
+  </script>
+</body>
+</html>
