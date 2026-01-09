@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Why we exist and how we operate. Clear process, operator mindset, and funding routed to the lane that fits." />
+  <title>TBD — Why Us</title>
+
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-local UI (keep shared stable) */
+    .toggleWrap{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+    }
+    .togTop{ display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap; }
+    .togTitle{
+      font-weight: 950; letter-spacing:-.03em; font-size: 1.35rem; margin: 0;
+    }
+    .togSub{ color: rgba(11,16,34,.72); margin: 6px 0 0; max-width: 70ch; }
+
+    .seg{
+      display:inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(11,16,34,.12);
+      background: rgba(247,248,252,.78);
+      padding: 6px;
+      gap: 6px;
+    }
+    .seg button{
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 950;
+      letter-spacing:-.01em;
+      background: transparent;
+      color: rgba(11,16,34,.78);
+      transition: transform 140ms var(--ease), background 140ms var(--ease);
+      white-space: nowrap;
+    }
+    .seg button:hover{ transform: translateY(-1px); }
+    .seg button.is-active{
+      background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(124,58,237,.14));
+      color: rgba(11,16,34,.92);
+      border: 1px solid rgba(59,130,246,.26);
+    }
+
+    .compare{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .col{
+      border-radius: 22px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.72);
+      padding: 14px;
+    }
+    .col__head{ display:flex; align-items:center; justify-content:space-between; gap: 10px; }
+    .col__title{ font-weight: 950; letter-spacing:-.02em; margin: 0; }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.74);
+      font-weight: 900;
+      color: rgba(11,16,34,.76);
+      font-size: .9rem;
+    }
+    .rows{ margin-top: 10px; display:grid; gap: 10px; }
+    .row{
+      border-radius: 16px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.78);
+      padding: 12px;
+    }
+    .row .k{
+      font-size:.78rem; color: rgba(11,16,34,.6);
+      font-weight: 900; letter-spacing:.08em; text-transform: uppercase;
+    }
+    .row .v{
+      margin-top: 6px;
+      font-weight: 850;
+      color: rgba(11,16,34,.84);
+    }
+    .row .m{
+      margin-top: 4px;
+      color: rgba(11,16,34,.72);
+      font-size: .92rem;
+    }
+
+    .principles{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .principle{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 14px 40px rgba(11,16,34,.06);
+      padding: 16px;
+    }
+    .principle .icon{
+      width: 42px; height: 42px; border-radius: 16px;
+      display:grid; place-items:center;
+      border: 1px solid rgba(11,16,34,.10);
+      background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(124,58,237,.14));
+      font-weight: 950;
+      margin-bottom: 10px;
+    }
+    .principle h3{ margin: 0 0 6px; }
+    .principle p{ margin: 0; color: rgba(11,16,34,.72); }
+
+    .team{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .cardy{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+    }
+    .quote{
+      font-weight: 900;
+      letter-spacing:-.02em;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    .by{
+      margin-top: 10px;
+      color: rgba(11,16,34,.68);
+      font-weight: 850;
+      font-size: .92rem;
+    }
+    .legalbox{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.72);
+      padding: 14px;
+      color: rgba(11,16,34,.72);
+      font-size: .95rem;
+    }
+    .legalbox b{ color: rgba(11,16,34,.92); }
+
+    @media (max-width: 980px){
+      .compare{ grid-template-columns: 1fr; }
+      .principles{ grid-template-columns: 1fr; }
+      .team{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="header" data-elevate-on-scroll>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="TBD Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">TBD</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__group">
+          <button class="nav__trigger" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-capital">
+            Capital Menu <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="menu-capital" class="menu" data-menu>
+            <a class="menu__item" href="options.html">Pick Your Capital</a>
+            <a class="menu__item" href="calculator.html">Funding Fit Calculator</a>
+            <a class="menu__item" href="playbooks.html">Growth Playbooks</a>
+          </div>
+        </div>
+
+        <a class="nav__link" href="process.html">The Process</a>
+        <a class="nav__link" href="proof.html">Receipts</a>
+        <a class="nav__link" href="about.html">Why Us</a>
+      </nav>
+
+      <div class="header__cta">
+        <div class="micro"> $50k–$500k • Fast approvals • No bank games</div>
+        <a class="btn btn--primary" href="get-funded.html">
+          Get Funded <span class="btn__hint">2–3 min</span>
+        </a>
+
+        <button class="burger" type="button" aria-label="Open menu" data-burger aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__panel">
+        <div class="drawer__top">
+          <span class="drawer__title">Navigate</span>
+          <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="drawer__stack">
+          <a class="drawer__link" href="options.html">Pick Your Capital</a>
+          <a class="drawer__link" href="calculator.html">Funding Fit Calculator</a>
+          <a class="drawer__link" href="playbooks.html">Growth Playbooks</a>
+          <a class="drawer__link" href="process.html">The Process</a>
+          <a class="drawer__link" href="proof.html">Deals + Receipts</a>
+          <a class="drawer__link" href="about.html">Humans, Not a Bank</a>
+          <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+      <div class="drawer__backdrop" data-drawer-close></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            We’re not a bank. We’re a lane-picker.
+          </div>
+
+          <h1 class="h1">We help operators get the <span class="ink">right</span> money.</h1>
+          <p class="lead">
+            Not “any money.” Not “maybe money.” The lane that fits your cash cycle — so you can keep momentum without creating a new problem.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="get-funded.html">Get Funded <span class="btn__hint">2–3 min</span></a>
+            <a class="btn btn--ghost" href="#compare">Bank vs Operator</a>
+          </div>
+
+          <div class="goodline" style="margin-top:12px;">
+            <span class="spark" aria-hidden="true"></span>
+            <span class="mini"><b>Core belief:</b> approvals aren’t “hard” — they’re just poorly packaged.</span>
+          </div>
+        </div>
+
+        <div class="hero__panel reveal">
+          <div class="panel">
+            <div class="panel__kicker">Our job</div>
+            <div class="panel__title">Reduce friction. Increase options.</div>
+            <div class="panel__body">
+              We ask the minimum, package the signal, and route you into lanes that can actually clear.
+            </div>
+
+            <div class="panel__actions">
+              <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+              <a class="btn btn--ghost btn--full" href="calculator.html">Run the Calculator</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- BANK VS OPERATOR TOGGLE -->
+    <section class="section" id="compare">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Bank logic vs Operator logic</h2>
+          <p class="muted">Same goal. Very different behavior.</p>
+        </div>
+
+        <div class="toggleWrap reveal" data-compare>
+          <div class="togTop">
+            <div>
+              <h3 class="togTitle">Pick the mode</h3>
+              <p class="togSub">Toggle between how a bank typically thinks and how an operator needs funding to behave.</p>
+            </div>
+
+            <div class="seg" role="tablist" aria-label="Comparison toggle">
+              <button class="is-active" type="button" role="tab" aria-selected="true" data-mode="bank">Bank mode</button>
+              <button type="button" role="tab" aria-selected="false" data-mode="operator">Operator mode</button>
+            </div>
+          </div>
+
+          <div class="compare" aria-live="polite">
+            <div class="col" data-left>
+              <div class="col__head">
+                <h4 class="col__title">Bank mode</h4>
+                <span class="badge">Slow certainty</span>
+              </div>
+              <div class="rows" id="leftRows"></div>
+            </div>
+
+            <div class="col" data-right>
+              <div class="col__head">
+                <h4 class="col__title">Operator mode</h4>
+                <span class="badge">Fast clarity</span>
+              </div>
+              <div class="rows" id="rightRows"></div>
+            </div>
+          </div>
+
+          <div class="section__cta" style="margin-top:14px;">
+            <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+            <a class="btn btn--ghost" href="process.html">See the process</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">How we operate</h2>
+          <p class="muted">Principles that remove friction and protect cashflow.</p>
+        </div>
+
+        <div class="principles">
+          <div class="principle reveal">
+            <div class="icon">⟡</div>
+            <h3 class="h4">Lane first. Money second.</h3>
+            <p>We route you based on your cash cycle. The wrong lane feels “fine” for 30 days, then taxes you.</p>
+          </div>
+
+          <div class="principle reveal">
+            <div class="icon">▣</div>
+            <h3 class="h4">Minimal inputs. Maximum signal.</h3>
+            <p>We ask for essentials. Then package it so underwriting can say yes without guessing.</p>
+          </div>
+
+          <div class="principle reveal">
+            <div class="icon">⚡</div>
+            <h3 class="h4">Speed, without sloppy.</h3>
+            <p>Fast is good. Fast + unclear is expensive. We keep it tight so you don’t inherit chaos.</p>
+          </div>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="options.html">Pick your lane</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM / VOICE -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Built for small business reality</h2>
+          <p class="muted">Because the business doesn’t pause while you wait on approvals.</p>
+        </div>
+
+        <div class="team">
+          <div class="cardy reveal">
+            <p class="quote">“Most founders don’t need ‘more funding.’ They need the lane that doesn’t punish their cashflow.”</p>
+            <div class="by">— Operator mindset, on purpose</div>
+            <div class="tip" style="margin-top:12px;">
+              <div aria-hidden="true">⌁</div>
+              <div><b>Translation:</b> We optimize for revenue continuity + fewer ‘surprise’ repayment shocks.</div>
+            </div>
+          </div>
+
+          <div class="cardy reveal">
+            <div class="kicker">What we are / aren’t</div>
+            <div class="title" style="font-size:1.15rem;">A funding connector with a brain</div>
+            <p class="sub">We help match businesses to funding options and partners. We are not a bank and we don’t guarantee approvals or terms.</p>
+
+            <div class="legalbox" style="margin-top:12px;">
+              <b>Compliance-friendly reality:</b> decisions, timing, and terms vary by lane, business profile, and partner underwriting.
+              We’ll tell you what fits after review.
+            </div>
+
+            <div class="section__cta" style="margin-top:12px;">
+              <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+              <a class="btn btn--ghost" href="proof.html">See receipts</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Questions people actually ask</h2>
+          <p class="muted">Short answers. No fog.</p>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item reveal">
+            <summary>Are you a lender?</summary>
+            <p>No. We help match businesses to funding options and partners based on fit.</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Do you guarantee approval?</summary>
+            <p>No. Approvals and terms depend on underwriting. We help package your file to reduce friction and improve clarity.</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>What’s the fastest way to move?</summary>
+            <p>Have 3–6 months bank statements ready. Clear use-of-funds helps too.</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Will this impact my credit?</summary>
+            <p>Depends on the lane. We’ll be clear before anything that impacts credit is run.</p>
+          </details>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="process.html">See the process</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container cta-band__inner reveal">
+        <div>
+          <h2 class="h2">Ready for the lane that fits?</h2>
+          <p class="muted">Start the application. We’ll route you after review.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="actionbar__item" href="calculator.html">
+      <span class="actionbar__icon" aria-hidden="true">⌁</span>
+      Calculator
+    </a>
+    <a class="actionbar__item" href="options.html">
+      <span class="actionbar__icon" aria-hidden="true">▦</span>
+      Options
+    </a>
+    <a class="actionbar__item" href="proof.html">
+      <span class="actionbar__icon" aria-hidden="true">★</span>
+      Receipts
+    </a>
+    <a class="actionbar__item actionbar__item--primary" href="get-funded.html">
+      <span class="actionbar__icon" aria-hidden="true">→</span>
+      Get Funded
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">TBD</span>
+        </div>
+        <p class="muted">Fast business funding for operators. $50k–$500k. Decisions in days, not months.</p>
+      </div>
+
+      <div>
+        <div class="footer__h">Capital</div>
+        <a class="footer__a" href="options.html">Pick Your Capital</a>
+        <a class="footer__a" href="calculator.html">Funding Fit Calculator</a>
+        <a class="footer__a" href="playbooks.html">Growth Playbooks</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Company</div>
+        <a class="footer__a" href="process.html">The Process</a>
+        <a class="footer__a" href="proof.html">Deals + Receipts</a>
+        <a class="footer__a" href="about.html">Why Us</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Legal</div>
+        <a class="footer__a" href="privacy.html">Privacy</a>
+        <a class="footer__a" href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="muted">© <span data-year></span> TBD. Built for operators.</div>
+      <div class="muted footer__note">
+        Disclaimer: This site is for informational purposes. If applicable, we connect businesses to funding options and partners.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+
+  <script>
+    (function(){
+      const wrap = document.querySelector('[data-compare]');
+      if(!wrap) return;
+
+      const btns = Array.from(wrap.querySelectorAll('[data-mode]'));
+      const left = document.getElementById('leftRows');
+      const right = document.getElementById('rightRows');
+
+      const modes = {
+        bank: {
+          leftTitle: "Bank mode",
+          rightTitle: "Operator mode",
+          left: [
+            { k:"Decision speed", v:"Slow", m:"Weeks of process before you get a real answer." },
+            { k:"Underwriting mindset", v:"Conservative", m:"Optimizes for certainty and low variance." },
+            { k:"Best for", v:"Perfect files", m:"Great if you have time and pristine documents." },
+            { k:"Risk", v:"Opportunity cost", m:"You wait while competitors move." }
+          ],
+          right: [
+            { k:"Decision speed", v:"Fast clarity", m:"Route into a lane that can actually clear." },
+            { k:"Underwriting mindset", v:"Fit-based", m:"Match lane to profile, not fantasy." },
+            { k:"Best for", v:"Operators", m:"Real businesses with real cycles." },
+            { k:"Risk", v:"Tradeoffs", m:"Speed vs cost vs flexibility — we explain it plainly." }
+          ]
+        },
+        operator: {
+          leftTitle: "Operator mode",
+          rightTitle: "Bank mode",
+          left: [
+            { k:"Primary goal", v:"Keep momentum", m:"Fund the move you’re making now." },
+            { k:"Lane selection", v:"Cash-cycle match", m:"Repayment cadence must fit how you collect." },
+            { k:"Packaging", v:"Signal > noise", m:"Readable statements + simple plan wins time." },
+            { k:"Outcome", v:"Options", m:"You choose the lane with intent." }
+          ],
+          right: [
+            { k:"Primary goal", v:"Reduce variance", m:"Process is designed to avoid risk, not enable speed." },
+            { k:"Lane selection", v:"Policy first", m:"If you don’t fit the box, you wait." },
+            { k:"Packaging", v:"Paperwork heavy", m:"More docs doesn’t always mean better outcomes." },
+            { k:"Outcome", v:"Maybe", m:"You might get a yes — eventually — if the file is perfect." }
+          ]
+        }
+      };
+
+      function renderRows(target, rows){
+        target.innerHTML = rows.map(r => `
+          <div class="row">
+            <div class="k">${escapeHtml(r.k)}</div>
+            <div class="v">${escapeHtml(r.v)}</div>
+            <div class="m">${escapeHtml(r.m)}</div>
+          </div>
+        `).join('');
+      }
+
+      function setActive(btn){
+        btns.forEach(b => {
+          const on = b === btn;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+
+        const mode = btn.getAttribute('data-mode') || 'bank';
+        const d = modes[mode] || modes.bank;
+        renderRows(left, d.left);
+        renderRows(right, d.right);
+      }
+
+      btns.forEach(b => b.addEventListener('click', () => setActive(b)));
+
+      setActive(btns[0]);
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+    })();
+  </script>
+</body>
+</html>
