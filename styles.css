@@ -645,13 +645,21 @@ img{ max-width:100%; display:block; }
 }
 .actionbar__icon{ opacity: .9; }
 
-/* Reveal animation */
+/* Reveal animation (fail-safe) */
+/* Default: visible (if JS fails, site still shows) */
 .reveal{
+  opacity: 1;
+  transform: none;
+}
+
+/* Only animate when JS is running */
+.js .reveal{
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 260ms var(--ease), transform 260ms var(--ease);
 }
-.reveal.is-in{
+
+.js .reveal.is-in{
   opacity: 1;
   transform: translateY(0);
 }
