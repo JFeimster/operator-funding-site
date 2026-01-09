@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Pick the right capital lane for your business. Working Capital, Lines, Term Loans, and more — explained in plain English." />
+  <title>TBD — Pick Your Capital</title>
+
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header (same across site) -->
+  <header class="header" data-elevate-on-scroll>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="TBD Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">TBD</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__group">
+          <button class="nav__trigger" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-capital">
+            Capital Menu <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="menu-capital" class="menu" data-menu>
+            <a class="menu__item" href="options.html">Pick Your Capital</a>
+            <a class="menu__item" href="calculator.html">Funding Fit Calculator</a>
+            <a class="menu__item" href="playbooks.html">Growth Playbooks</a>
+          </div>
+        </div>
+
+        <a class="nav__link" href="process.html">The Process</a>
+        <a class="nav__link" href="proof.html">Receipts</a>
+        <a class="nav__link" href="about.html">Why Us</a>
+      </nav>
+
+      <div class="header__cta">
+        <div class="micro"> $50k–$500k • Fast approvals • No bank games</div>
+        <a class="btn btn--primary" href="get-funded.html">
+          Get Funded <span class="btn__hint">2–3 min</span>
+        </a>
+
+        <button class="burger" type="button" aria-label="Open menu" data-burger aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__panel">
+        <div class="drawer__top">
+          <span class="drawer__title">Navigate</span>
+          <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="drawer__stack">
+          <a class="drawer__link" href="options.html">Pick Your Capital</a>
+          <a class="drawer__link" href="calculator.html">Funding Fit Calculator</a>
+          <a class="drawer__link" href="playbooks.html">Growth Playbooks</a>
+          <a class="drawer__link" href="process.html">The Process</a>
+          <a class="drawer__link" href="proof.html">Deals + Receipts</a>
+          <a class="drawer__link" href="about.html">Humans, Not a Bank</a>
+          <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+      <div class="drawer__backdrop" data-drawer-close></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Pick a lane that won’t choke cashflow
+          </div>
+
+          <h1 class="h1">Capital lanes — explained like an operator.</h1>
+          <p class="lead">
+            Different businesses need different funding. We help you choose the lane that fits your reality — not a banker’s fantasy.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="get-funded.html">Get Funded <span class="btn__hint">2–3 min</span></a>
+            <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+          </div>
+
+          <div class="fit reveal" style="margin-top:18px;">
+            <div class="fit__top">
+              <h2 class="h3">Quick take</h2>
+              <p class="muted">Speed costs more. Flexibility costs discipline. We’ll show the tradeoff.</p>
+            </div>
+
+            <div class="fit__cards" style="grid-template-columns:repeat(3,1fr);">
+              <div class="fitcard">
+                <div class="fitcard__k">If you need it now</div>
+                <div class="fitcard__v">Working Capital</div>
+              </div>
+              <div class="fitcard">
+                <div class="fitcard__k">If it’s recurring</div>
+                <div class="fitcard__v">Line of Credit</div>
+              </div>
+              <div class="fitcard">
+                <div class="fitcard__k">If it’s big + planned</div>
+                <div class="fitcard__v">Term Loan</div>
+              </div>
+            </div>
+
+            <div class="fit__note">
+              <span class="shield" aria-hidden="true">⟡</span>
+              Not sure? Use the calculator. It’s faster than guessing.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__panel reveal">
+          <div class="panel">
+            <div class="panel__kicker">Capital menu</div>
+            <div class="panel__title">Choose the lane. Keep momentum.</div>
+            <div class="panel__body">
+              Click any option below for the operator-grade version: best for, timeline, and the honest tradeoff.
+            </div>
+
+            <div class="panel__actions" style="margin-top:14px;">
+              <a class="btn btn--primary btn--full" href="#matrix">See the lanes</a>
+              <a class="btn btn--ghost btn--full" href="get-funded.html">Get Funded</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- OPTIONS MATRIX -->
+    <section class="section" id="matrix">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Pick your capital lane.</h2>
+          <p class="muted">Click a lane to expand. You’ll see: best-for, timeline, and the tradeoff.</p>
+        </div>
+
+        <div class="accordion-grid">
+          <button class="acc card reveal" type="button" data-acc id="lane-working-capital" data-lane="working-capital">
+            <div class="acc__top">
+              <h3 class="h4">Working Capital</h3>
+              <span class="tag">Fast</span>
+            </div>
+            <div class="muted">Inventory, payroll, speed-sensitive moves.</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> fast funding + flexible use</li>
+                <li><b>Typical timeline:</b> days</li>
+                <li><b>Tradeoff:</b> speed can cost more — we’ll show lanes with better terms too</li>
+              </ul>
+              <div class="section__cta" style="margin-top:10px;">
+                <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+                <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+              </div>
+            </div>
+          </button>
+
+          <button class="acc card reveal" type="button" data-acc id="lane-line-of-credit" data-lane="line-of-credit">
+            <div class="acc__top">
+              <h3 class="h4">Line of Credit</h3>
+              <span class="tag">Flexible</span>
+            </div>
+            <div class="muted">Tap funds when you need them.</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> recurring capital needs (inventory cycles, predictable gaps)</li>
+                <li><b>Typical timeline:</b> moderate</li>
+                <li><b>Tradeoff:</b> best limits/terms usually require consistency</li>
+              </ul>
+              <div class="section__cta" style="margin-top:10px;">
+                <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+                <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+              </div>
+            </div>
+          </button>
+
+          <button class="acc card reveal" type="button" data-acc id="lane-term-loan" data-lane="term-loan">
+            <div class="acc__top">
+              <h3 class="h4">Term Loan</h3>
+              <span class="tag">Bigger</span>
+            </div>
+            <div class="muted">Stable payments for planned spend.</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> expansion, equipment, major projects</li>
+                <li><b>Typical timeline:</b> slower than working capital</li>
+                <li><b>Tradeoff:</b> stricter underwriting + more documentation</li>
+              </ul>
+              <div class="section__cta" style="margin-top:10px;">
+                <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+                <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+              </div>
+            </div>
+          </button>
+
+          <button class="acc card reveal" type="button" data-acc id="lane-revenue-based" data-lane="revenue-based">
+            <div class="acc__top">
+              <h3 class="h4">Revenue-Based</h3>
+              <span class="tag">Adaptive</span>
+            </div>
+            <div class="muted">Pay as you earn (if this lane fits).</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> strong revenue + variable cashflow</li>
+                <li><b>Typical timeline:</b> moderate</li>
+                <li><b>Tradeoff:</b> remits fluctuate with revenue (great when used intentionally)</li>
+              </ul>
+              <div class="section__cta" style="margin-top:10px;">
+                <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+                <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANE WIZARD -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Choose your lane (no spreadsheets).</h2>
+          <p class="muted">Pick your biggest constraint. We’ll point you to the lane that usually fits.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="filters" style="margin:0 0 12px;">
+            <button class="chip is-active" type="button" data-lane-pick="cashflow">Cashflow gap</button>
+            <button class="chip" type="button" data-lane-pick="inventory">Need inventory now</button>
+            <button class="chip" type="button" data-lane-pick="growth">Want growth capital</button>
+            <button class="chip" type="button" data-lane-pick="planned">Big planned spend</button>
+          </div>
+
+          <div class="twocol" style="gap:16px;">
+            <div>
+              <div class="h3" style="font-weight:900; letter-spacing:-.02em; margin:0 0 8px;">Recommendation</div>
+              <p class="muted" id="lane-wizard-copy" style="margin:0;">
+                If you’re bridging gaps and smoothing operations, a <b>Line of Credit</b> is often the cleanest lane.
+              </p>
+              <div class="section__cta" style="margin-top:12px;">
+                <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+                <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="h3" style="font-weight:900; letter-spacing:-.02em; margin:0 0 8px;">What this avoids</div>
+              <ul class="list" style="margin-top:0;">
+                <li>Overpaying for speed when you don’t need it</li>
+                <li>Funding long-term spend with short-term money</li>
+                <li>Choosing a lane that punishes your cashflow</li>
+              </ul>
+              <a class="link" href="#matrix">Jump to the recommended lane →</a>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          // Lightweight per-page interaction (no app.js changes needed)
+          (function(){
+            const picks = Array.from(document.querySelectorAll('[data-lane-pick]'));
+            const copy = document.getElementById('lane-wizard-copy');
+
+            const setActive = (btn) => {
+              picks.forEach(b => b.classList.toggle('is-active', b === btn));
+              const key = btn.getAttribute('data-lane-pick');
+              const map = {
+                cashflow: {
+                  text: 'If you’re bridging gaps and smoothing operations, a <b>Line of Credit</b> is often the cleanest lane.',
+                  anchor: '#lane-line-of-credit'
+                },
+                inventory: {
+                  text: 'If timing matters (inventory/POs), <b>Working Capital</b> is usually the fastest lane.',
+                  anchor: '#lane-working-capital'
+                },
+                growth: {
+                  text: 'If you’re funding growth (ads/hiring) and want terms that breathe, start with a <b>Line of Credit</b> or <b>Revenue-Based</b> lane.',
+                  anchor: '#lane-revenue-based'
+                },
+                planned: {
+                  text: 'If it’s a big planned spend (expansion/equipment), a <b>Term Loan</b> often fits best — if underwriting works.',
+                  anchor: '#lane-term-loan'
+                }
+              };
+
+              const m = map[key] || map.cashflow;
+              copy.innerHTML = m.text;
+
+              const jump = document.querySelector('a[href="#matrix"]') || document.querySelector('.link[href="#matrix"]');
+              // update the “Jump” link in this card only
+              const jumpLink = btn.closest('.card')?.querySelector('.link[href="#matrix"]');
+              if (jumpLink) jumpLink.setAttribute('href', m.anchor);
+            };
+
+            picks.forEach(btn => btn.addEventListener('click', () => setActive(btn)));
+          })();
+        </script>
+      </div>
+    </section>
+
+    <!-- QUALIFICATION SNAPSHOT -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">What typically helps approvals.</h2>
+          <p class="muted">We work with reality — but these make it smoother.</p>
+        </div>
+
+        <div class="grid4">
+          <div class="card reveal">
+            <h3 class="h4">6+ months revenue</h3>
+            <p class="muted">Preferred. More history = more options.</p>
+          </div>
+          <div class="card reveal">
+            <h3 class="h4">Consistency</h3>
+            <p class="muted">Predictable inflows unlock better lanes.</p>
+          </div>
+          <div class="card reveal">
+            <h3 class="h4">Clean statements</h3>
+            <p class="muted">We don’t need perfect — we need readable.</p>
+          </div>
+          <div class="card reveal">
+            <h3 class="h4">Clear use of funds</h3>
+            <p class="muted">Underwriting loves a plan that makes sense.</p>
+          </div>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container cta-band__inner reveal">
+        <div>
+          <h2 class="h2">Get matched to the lane that fits.</h2>
+          <p class="muted">Fast clarity beats slow guessing.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="actionbar__item" href="calculator.html">
+      <span class="actionbar__icon" aria-hidden="true">⌁</span>
+      Calculator
+    </a>
+    <a class="actionbar__item" href="options.html">
+      <span class="actionbar__icon" aria-hidden="true">▦</span>
+      Options
+    </a>
+    <a class="actionbar__item" href="proof.html">
+      <span class="actionbar__icon" aria-hidden="true">★</span>
+      Receipts
+    </a>
+    <a class="actionbar__item actionbar__item--primary" href="get-funded.html">
+      <span class="actionbar__icon" aria-hidden="true">→</span>
+      Get Funded
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">TBD</span>
+        </div>
+        <p class="muted">Fast business funding for operators. $50k–$500k. Decisions in days, not months.</p>
+      </div>
+
+      <div>
+        <div class="footer__h">Capital</div>
+        <a class="footer__a" href="options.html">Pick Your Capital</a>
+        <a class="footer__a" href="calculator.html">Funding Fit Calculator</a>
+        <a class="footer__a" href="playbooks.html">Growth Playbooks</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Company</div>
+        <a class="footer__a" href="process.html">The Process</a>
+        <a class="footer__a" href="proof.html">Deals + Receipts</a>
+        <a class="footer__a" href="about.html">Why Us</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Legal</div>
+        <a class="footer__a" href="privacy.html">Privacy</a>
+        <a class="footer__a" href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="muted">© <span data-year></span> TBD. Built for operators.</div>
+      <div class="muted footer__note">
+        Disclaimer: This site is for informational purposes. If applicable, we connect businesses to funding options and partners.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
