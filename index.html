@@ -122,7 +122,18 @@
             </div>
 
             <div class="fit__cards" aria-live="polite" data-fit-output>
-              <!-- injected by app.js -->
+              <div class="fitcard">
+                <div class="fitcard__k">Likely lane</div>
+                <div class="fitcard__v">Working Capital / Line</div>
+              </div>
+              <div class="fitcard">
+                <div class="fitcard__k">Typical timeline</div>
+                <div class="fitcard__v">Fast (days)</div>
+              </div>
+              <div class="fitcard">
+                <div class="fitcard__k">What we’ll need</div>
+                <div class="fitcard__v">Statements + basics</div>
+              </div>
             </div>
 
             <div class="fit__note">
@@ -239,7 +250,18 @@
           </div>
 
           <div class="stepper__panel" data-stepper-panel aria-live="polite">
-            <!-- injected by app.js -->
+            <div class="h3" style="font-weight:900; letter-spacing:-.02em; margin-bottom:10px;">Apply (2–3 min)</div>
+            <div class="twocol">
+              <div>
+                <div class="k">You do</div>
+                <div class="v">Basic business details.</div>
+              </div>
+              <div>
+                <div class="k">We do</div>
+                <div class="v">Quick fit + route to the right lane.</div>
+              </div>
+            </div>
+            <div class="badge">⟡ Typical: Same day review (typical).</div>
           </div>
         </div>
 
@@ -259,13 +281,15 @@
         </div>
 
         <div class="accordion-grid">
-          <button class="acc card reveal" type="button" data-acc>
-            <div class="acc__top">
-              <h3 class="h4">Working Capital</h3>
-              <span class="tag">Fast</span>
-            </div>
-            <div class="muted">Inventory, payroll, speed-sensitive moves.</div>
-            <div class="acc__body" data-acc-body>
+          <details class="acc card reveal">
+            <summary class="acc__top">
+              <div class="acc__head">
+                <h3 class="h4">Working Capital</h3>
+                <span class="tag">Fast</span>
+              </div>
+              <div class="muted">Inventory, payroll, speed-sensitive moves.</div>
+            </summary>
+            <div class="acc__body">
               <ul class="list">
                 <li><b>Best for:</b> quick funding + flexible use</li>
                 <li><b>Timeline:</b> typically fast</li>
@@ -273,15 +297,17 @@
               </ul>
               <a class="link" href="options.html">See details →</a>
             </div>
-          </button>
+          </details>
 
-          <button class="acc card reveal" type="button" data-acc>
-            <div class="acc__top">
-              <h3 class="h4">Line of Credit</h3>
-              <span class="tag">Flexible</span>
-            </div>
-            <div class="muted">Tap funds when you need them.</div>
-            <div class="acc__body" data-acc-body>
+          <details class="acc card reveal">
+            <summary class="acc__top">
+              <div class="acc__head">
+                <h3 class="h4">Line of Credit</h3>
+                <span class="tag">Flexible</span>
+              </div>
+              <div class="muted">Tap funds when you need them.</div>
+            </summary>
+            <div class="acc__body">
               <ul class="list">
                 <li><b>Best for:</b> recurring capital needs</li>
                 <li><b>Timeline:</b> moderate</li>
@@ -289,15 +315,17 @@
               </ul>
               <a class="link" href="options.html">See details →</a>
             </div>
-          </button>
+          </details>
 
-          <button class="acc card reveal" type="button" data-acc>
-            <div class="acc__top">
-              <h3 class="h4">Term Loan</h3>
-              <span class="tag">Bigger</span>
-            </div>
-            <div class="muted">Stable payments, larger projects.</div>
-            <div class="acc__body" data-acc-body>
+          <details class="acc card reveal">
+            <summary class="acc__top">
+              <div class="acc__head">
+                <h3 class="h4">Term Loan</h3>
+                <span class="tag">Bigger</span>
+              </div>
+              <div class="muted">Stable payments, larger projects.</div>
+            </summary>
+            <div class="acc__body">
               <ul class="list">
                 <li><b>Best for:</b> expansion, equipment, major spend</li>
                 <li><b>Timeline:</b> slower than working capital</li>
@@ -305,15 +333,17 @@
               </ul>
               <a class="link" href="options.html">See details →</a>
             </div>
-          </button>
+          </details>
 
-          <button class="acc card reveal" type="button" data-acc>
-            <div class="acc__top">
-              <h3 class="h4">Revenue-Based</h3>
-              <span class="tag">Adaptive</span>
-            </div>
-            <div class="muted">Pay as you earn (if this lane fits).</div>
-            <div class="acc__body" data-acc-body>
+          <details class="acc card reveal">
+            <summary class="acc__top">
+              <div class="acc__head">
+                <h3 class="h4">Revenue-Based</h3>
+                <span class="tag">Adaptive</span>
+              </div>
+              <div class="muted">Pay as you earn (if this lane fits).</div>
+            </summary>
+            <div class="acc__body">
               <ul class="list">
                 <li><b>Best for:</b> strong revenue + variable cashflow</li>
                 <li><b>Timeline:</b> moderate</li>
@@ -321,7 +351,7 @@
               </ul>
               <a class="link" href="options.html">See details →</a>
             </div>
-          </button>
+          </details>
         </div>
 
         <div class="section__cta reveal">

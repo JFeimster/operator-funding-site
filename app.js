@@ -101,13 +101,6 @@
     reveals.forEach((el) => io.observe(el));
   }
 
-  // Accordion cards (Home options preview)
-  $$('[data-acc]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('is-open');
-    });
-  });
-
   // Funding Fit selector (Home)
   const fitRoot = $('[data-fit]');
   if (fitRoot) {
