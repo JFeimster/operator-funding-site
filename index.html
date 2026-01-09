@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Fast business funding for US operators. $50k–$500k. Decisions in days, not months." />
+  <title>TBD — $50k–$500k Business Funding, Fast</title>
+
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Skip link -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="header" data-elevate-on-scroll>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="TBD Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">TBD</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__group">
+          <button class="nav__trigger" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-capital">
+            Capital Menu
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <div id="menu-capital" class="menu" data-menu>
+            <a class="menu__item" href="options.html">Pick Your Capital</a>
+            <a class="menu__item" href="calculator.html">Funding Fit Calculator</a>
+            <a class="menu__item" href="playbooks.html">Growth Playbooks</a>
+          </div>
+        </div>
+
+        <a class="nav__link" href="process.html">The Process</a>
+        <a class="nav__link" href="proof.html">Receipts</a>
+        <a class="nav__link" href="about.html">Why Us</a>
+      </nav>
+
+      <div class="header__cta">
+        <div class="micro"> $50k–$500k • Fast approvals • No bank games</div>
+        <a class="btn btn--primary" href="get-funded.html">
+          Get Funded
+          <span class="btn__hint">2–3 min</span>
+        </a>
+
+        <button class="burger" type="button" aria-label="Open menu" data-burger aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__panel">
+        <div class="drawer__top">
+          <span class="drawer__title">Navigate</span>
+          <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="drawer__stack">
+          <a class="drawer__link" href="options.html">Pick Your Capital</a>
+          <a class="drawer__link" href="calculator.html">Funding Fit Calculator</a>
+          <a class="drawer__link" href="playbooks.html">Growth Playbooks</a>
+          <a class="drawer__link" href="process.html">The Process</a>
+          <a class="drawer__link" href="proof.html">Deals + Receipts</a>
+          <a class="drawer__link" href="about.html">Humans, Not a Bank</a>
+          <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+      <div class="drawer__backdrop" data-drawer-close></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Built for DTC, SaaS, Agencies
+          </div>
+
+          <h1 class="h1">
+            Get <span class="ink">$50k–$500k</span> for your business — fast.
+          </h1>
+
+          <p class="lead">
+            Capital that moves at operator speed. We match you to the right lane without the bank obstacle course.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="get-funded.html">Get Funded <span class="btn__hint">2–3 min</span></a>
+            <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+          </div>
+
+          <!-- Funding Fit Selector -->
+          <div class="fit reveal" data-fit>
+            <div class="fit__top">
+              <h2 class="h3">What are you funding?</h2>
+              <p class="muted">Pick one. We’ll show the best-fit lane.</p>
+            </div>
+
+            <div class="fit__chips" role="tablist" aria-label="Funding Fit Selector">
+              <button class="chip is-active" type="button" role="tab" aria-selected="true"
+                      data-fit-chip data-fit-key="inventory">
+                Inventory / Cashflow
+              </button>
+              <button class="chip" type="button" role="tab" aria-selected="false"
+                      data-fit-chip data-fit-key="growth">
+                Growth (Ads + Hiring)
+              </button>
+              <button class="chip" type="button" role="tab" aria-selected="false"
+                      data-fit-chip data-fit-key="bridge">
+                Runway Bridge
+              </button>
+            </div>
+
+            <div class="fit__cards" aria-live="polite" data-fit-output>
+              <!-- injected by app.js -->
+            </div>
+
+            <div class="fit__note">
+              <span class="shield" aria-hidden="true">⟡</span>
+              Multiple funding partners. We match you to the right lane.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__panel reveal">
+          <div class="panel">
+            <div class="panel__kicker">Today’s reality</div>
+            <div class="panel__title">Banks optimize for saying “no.”</div>
+            <div class="panel__body">
+              We optimize for getting good businesses funded — fast — with the lane that won’t choke your cashflow.
+            </div>
+
+            <div class="panel__stats">
+              <div class="stat">
+                <div class="stat__num">$50k–$500k</div>
+                <div class="stat__label">Typical range</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">Days</div>
+                <div class="stat__label">Not months</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">Multi-lane</div>
+                <div class="stat__label">Not one lender</div>
+              </div>
+            </div>
+
+            <div class="panel__actions">
+              <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+              <a class="btn btn--ghost btn--full" href="options.html">See Options</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- QUALIFIER -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">If you’re moving, we can fund it.</h2>
+          <p class="muted">This is for operators with real revenue who need capital to move faster.</p>
+        </div>
+
+        <div class="grid4">
+          <div class="card reveal">
+            <h3 class="h4">DTC / Ecommerce</h3>
+            <p class="muted">Inventory, POs, seasonal ramps, supply chain timing.</p>
+          </div>
+          <div class="card reveal">
+            <h3 class="h4">B2B SaaS</h3>
+            <p class="muted">Runway extension, growth spend, expansion.</p>
+          </div>
+          <div class="card reveal">
+            <h3 class="h4">Agencies</h3>
+            <p class="muted">Hiring delivery, smoothing cashflow gaps, scaling ops.</p>
+          </div>
+          <div class="card reveal">
+            <h3 class="h4">Revenue-first</h3>
+            <p class="muted">6+ months preferred. Pre-revenue usually isn’t a fit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES STRIP -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="bar reveal">
+          <div class="bar__item">
+            <div class="bar__k">Range</div>
+            <div class="bar__v">$50k–$500k</div>
+          </div>
+          <div class="bar__item">
+            <div class="bar__k">Speed</div>
+            <div class="bar__v">Days, not weeks</div>
+          </div>
+          <div class="bar__item">
+            <div class="bar__k">Options</div>
+            <div class="bar__v">Multiple lanes</div>
+          </div>
+          <div class="bar__item">
+            <div class="bar__k">Effort</div>
+            <div class="bar__v">Minimal paperwork</div>
+          </div>
+          <div class="bar__cta">
+            <a class="link" href="calculator.html">See what you likely qualify for →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section--ink">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">You click. We do the heavy lifting.</h2>
+          <p class="muted muted--ink">No mystery steps. No busywork. Just momentum.</p>
+        </div>
+
+        <div class="stepper reveal" data-stepper>
+          <div class="stepper__tabs" role="tablist" aria-label="Process steps">
+            <button class="step is-active" type="button" role="tab" aria-selected="true" data-step="1">1) Apply</button>
+            <button class="step" type="button" role="tab" aria-selected="false" data-step="2">2) Package</button>
+            <button class="step" type="button" role="tab" aria-selected="false" data-step="3">3) Offers</button>
+            <button class="step" type="button" role="tab" aria-selected="false" data-step="4">4) Funded</button>
+          </div>
+
+          <div class="stepper__panel" data-stepper-panel aria-live="polite">
+            <!-- injected by app.js -->
+          </div>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded <span class="btn__hint">2–3 min</span></a>
+          <a class="btn btn--ghost" href="process.html">See the full process</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTIONS PREVIEW -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Pick your capital lane.</h2>
+          <p class="muted">Click a card. Get the plain-English tradeoff.</p>
+        </div>
+
+        <div class="accordion-grid">
+          <button class="acc card reveal" type="button" data-acc>
+            <div class="acc__top">
+              <h3 class="h4">Working Capital</h3>
+              <span class="tag">Fast</span>
+            </div>
+            <div class="muted">Inventory, payroll, speed-sensitive moves.</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> quick funding + flexible use</li>
+                <li><b>Timeline:</b> typically fast</li>
+                <li><b>Tradeoff:</b> speed can cost more — we’ll show options</li>
+              </ul>
+              <a class="link" href="options.html">See details →</a>
+            </div>
+          </button>
+
+          <button class="acc card reveal" type="button" data-acc>
+            <div class="acc__top">
+              <h3 class="h4">Line of Credit</h3>
+              <span class="tag">Flexible</span>
+            </div>
+            <div class="muted">Tap funds when you need them.</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> recurring capital needs</li>
+                <li><b>Timeline:</b> moderate</li>
+                <li><b>Tradeoff:</b> consistency matters for best terms</li>
+              </ul>
+              <a class="link" href="options.html">See details →</a>
+            </div>
+          </button>
+
+          <button class="acc card reveal" type="button" data-acc>
+            <div class="acc__top">
+              <h3 class="h4">Term Loan</h3>
+              <span class="tag">Bigger</span>
+            </div>
+            <div class="muted">Stable payments, larger projects.</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> expansion, equipment, major spend</li>
+                <li><b>Timeline:</b> slower than working capital</li>
+                <li><b>Tradeoff:</b> stricter underwriting</li>
+              </ul>
+              <a class="link" href="options.html">See details →</a>
+            </div>
+          </button>
+
+          <button class="acc card reveal" type="button" data-acc>
+            <div class="acc__top">
+              <h3 class="h4">Revenue-Based</h3>
+              <span class="tag">Adaptive</span>
+            </div>
+            <div class="muted">Pay as you earn (if this lane fits).</div>
+            <div class="acc__body" data-acc-body>
+              <ul class="list">
+                <li><b>Best for:</b> strong revenue + variable cashflow</li>
+                <li><b>Timeline:</b> moderate</li>
+                <li><b>Tradeoff:</b> remits fluctuate with revenue</li>
+              </ul>
+              <a class="link" href="options.html">See details →</a>
+            </div>
+          </button>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="options.html">See Options</a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF WALL -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Receipts. Not vibes.</h2>
+          <p class="muted">Filter by industry + goal. Find someone like you.</p>
+        </div>
+
+        <div class="filters reveal" data-filters>
+          <button class="chip is-active" type="button" data-filter="all">All</button>
+          <button class="chip" type="button" data-filter="dtc">DTC</button>
+          <button class="chip" type="button" data-filter="saas">SaaS</button>
+          <button class="chip" type="button" data-filter="agency">Agency</button>
+          <button class="chip" type="button" data-filter="inventory">Inventory</button>
+          <button class="chip" type="button" data-filter="ads">Ads</button>
+          <button class="chip" type="button" data-filter="hiring">Hiring</button>
+          <button class="chip" type="button" data-filter="bridge">Bridge</button>
+        </div>
+
+        <div class="proof-grid" data-proof-grid>
+          <article class="proof reveal" data-tags="dtc inventory fast">
+            <div class="proof__top">
+              <div class="proof__metric">$220k • 5 days • Inventory</div>
+              <div class="proof__pill">DTC</div>
+            </div>
+            <p class="proof__quote">“We filled inventory before the rush. No drama. Just funded.”</p>
+            <div class="proof__meta">Ecommerce • TX</div>
+          </article>
+
+          <article class="proof reveal" data-tags="saas bridge">
+            <div class="proof__top">
+              <div class="proof__metric">$150k • Runway bridge</div>
+              <div class="proof__pill">SaaS</div>
+            </div>
+            <p class="proof__quote">“Bought us runway without choking our ops. Clear terms. Fast answers.”</p>
+            <div class="proof__meta">B2B SaaS • NY</div>
+          </article>
+
+          <article class="proof reveal" data-tags="agency hiring fast">
+            <div class="proof__top">
+              <div class="proof__metric">$90k • Hiring • Fast</div>
+              <div class="proof__pill">Agency</div>
+            </div>
+            <p class="proof__quote">“We staffed the team before the contract start. That’s the whole game.”</p>
+            <div class="proof__meta">Services • CA</div>
+          </article>
+
+          <article class="proof reveal" data-tags="dtc ads">
+            <div class="proof__top">
+              <div class="proof__metric">$120k • Growth spend</div>
+              <div class="proof__pill">DTC</div>
+            </div>
+            <p class="proof__quote">“Capital let us scale ads without starving cashflow.”</p>
+            <div class="proof__meta">Ecommerce • FL</div>
+          </article>
+
+          <article class="proof reveal" data-tags="saas hiring">
+            <div class="proof__top">
+              <div class="proof__metric">$180k • Hiring</div>
+              <div class="proof__pill">SaaS</div>
+            </div>
+            <p class="proof__quote">“Closed a talent gap fast. Underwriting was straightforward.”</p>
+            <div class="proof__meta">Software • IL</div>
+          </article>
+
+          <article class="proof reveal" data-tags="agency bridge">
+            <div class="proof__top">
+              <div class="proof__metric">$75k • Cashflow gap</div>
+              <div class="proof__pill">Agency</div>
+            </div>
+            <p class="proof__quote">“Bridged receivables cleanly. Kept delivery smooth.”</p>
+            <div class="proof__meta">Agency • WA</div>
+          </article>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="proof.html">See all receipts</a>
+          <a class="btn btn--ghost" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Questions operators actually ask.</h2>
+          <p class="muted">Short answers. No sales fog.</p>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item reveal">
+            <summary>How fast is “fast”?</summary>
+            <p>Depends on lane and docs. If your statements are ready, you can move quickly.</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Do you require perfect credit?</summary>
+            <p>No. Approvals depend on the full picture (revenue, consistency, and the lane that fits).</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>What do you need from me?</summary>
+            <p>Basic business info + bank statements. We only ask for what matters to underwriting.</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Is this a bank loan?</summary>
+            <p>Not always. We route you to the best-fit funding option based on your business and goals.</p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Will this hurt my credit?</summary>
+            <p>Depends on the lane. We’ll be clear before anything that impacts credit is run.</p>
+          </details>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded <span class="btn__hint">2–3 min</span></a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container cta-band__inner reveal">
+        <div>
+          <h2 class="h2">Stop waiting on the bank. Start moving.</h2>
+          <p class="muted">Run the numbers. Pick a lane. Get funded.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="actionbar__item" href="calculator.html">
+      <span class="actionbar__icon" aria-hidden="true">⌁</span>
+      Calculator
+    </a>
+    <a class="actionbar__item" href="options.html">
+      <span class="actionbar__icon" aria-hidden="true">▦</span>
+      Options
+    </a>
+    <a class="actionbar__item" href="proof.html">
+      <span class="actionbar__icon" aria-hidden="true">★</span>
+      Receipts
+    </a>
+    <a class="actionbar__item actionbar__item--primary" href="get-funded.html">
+      <span class="actionbar__icon" aria-hidden="true">→</span>
+      Get Funded
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">TBD</span>
+        </div>
+        <p class="muted">Fast business funding for operators. $50k–$500k. Decisions in days, not months.</p>
+      </div>
+
+      <div>
+        <div class="footer__h">Capital</div>
+        <a class="footer__a" href="options.html">Pick Your Capital</a>
+        <a class="footer__a" href="calculator.html">Funding Fit Calculator</a>
+        <a class="footer__a" href="playbooks.html">Growth Playbooks</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Company</div>
+        <a class="footer__a" href="process.html">The Process</a>
+        <a class="footer__a" href="proof.html">Deals + Receipts</a>
+        <a class="footer__a" href="about.html">Why Us</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Legal</div>
+        <a class="footer__a" href="privacy.html">Privacy</a>
+        <a class="footer__a" href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="muted">© <span data-year></span> TBD. Built for operators.</div>
+      <div class="muted footer__note">
+        Disclaimer: This site is for informational purposes. If applicable, we connect businesses to funding options and partners.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
