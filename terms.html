@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Terms of Service for TBD. Clear rules, plain language." />
+  <title>TBD — Terms of Service</title>
+
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-local typography helpers */
+    .legal{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+    }
+    .legal h2{ margin-top: 18px; }
+    .legal h2:first-child{ margin-top: 0; }
+    .legal p, .legal li{
+      color: rgba(11,16,34,.74);
+      line-height: 1.65;
+    }
+    .legal b{ color: rgba(11,16,34,.92); }
+
+    .metaRow{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top: 10px;
+    }
+    .metaPill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.78);
+      color: rgba(11,16,34,.72);
+      font-weight: 900;
+      font-size: .92rem;
+    }
+    .toc{
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.72);
+    }
+    .toc a{ display:block; padding: 8px 10px; border-radius: 14px; color: rgba(11,16,34,.78); font-weight: 850; }
+    .toc a:hover{ background: rgba(255,255,255,.72); }
+
+    .callout{
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(124,58,237,.06));
+      padding: 14px;
+      color: rgba(11,16,34,.74);
+    }
+    .callout b{ color: rgba(11,16,34,.92); }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="header" data-elevate-on-scroll>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="TBD Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">TBD</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__group">
+          <button class="nav__trigger" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-capital">
+            Capital Menu <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="menu-capital" class="menu" data-menu>
+            <a class="menu__item" href="options.html">Pick Your Capital</a>
+            <a class="menu__item" href="calculator.html">Funding Fit Calculator</a>
+            <a class="menu__item" href="playbooks.html">Growth Playbooks</a>
+          </div>
+        </div>
+
+        <a class="nav__link" href="process.html">The Process</a>
+        <a class="nav__link" href="proof.html">Receipts</a>
+        <a class="nav__link" href="about.html">Why Us</a>
+      </nav>
+
+      <div class="header__cta">
+        <div class="micro"> $50k–$500k • Fast approvals • No bank games</div>
+        <a class="btn btn--primary" href="get-funded.html">
+          Get Funded <span class="btn__hint">2–3 min</span>
+        </a>
+
+        <button class="burger" type="button" aria-label="Open menu" data-burger aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__panel">
+        <div class="drawer__top">
+          <span class="drawer__title">Navigate</span>
+          <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="drawer__stack">
+          <a class="drawer__link" href="options.html">Pick Your Capital</a>
+          <a class="drawer__link" href="calculator.html">Funding Fit Calculator</a>
+          <a class="drawer__link" href="playbooks.html">Growth Playbooks</a>
+          <a class="drawer__link" href="process.html">The Process</a>
+          <a class="drawer__link" href="proof.html">Deals + Receipts</a>
+          <a class="drawer__link" href="about.html">Humans, Not a Bank</a>
+          <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+      <div class="drawer__backdrop" data-drawer-close></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Terms, not a novel
+          </div>
+
+          <h1 class="h1">Terms of Service</h1>
+          <p class="lead">The rules for using this site. Plain language. No gotchas (on purpose).</p>
+
+          <div class="metaRow">
+            <span class="metaPill">Effective: <b>&nbsp;[Add date]</b></span>
+            <span class="metaPill">Contact: <b>&nbsp;legal@[yourdomain].com</b></span>
+          </div>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+            <a class="btn btn--ghost" href="#terms">Read terms</a>
+          </div>
+        </div>
+
+        <div class="hero__panel reveal">
+          <div class="panel">
+            <div class="panel__kicker">Quick summary</div>
+            <div class="panel__title">We don’t guarantee approvals.</div>
+            <div class="panel__body">
+              We help match businesses to funding options and partners. Underwriting decisions and terms are set by partners and vary by lane.
+            </div>
+
+            <div class="panel__actions">
+              <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+              <a class="btn btn--ghost btn--full" href="privacy.html">Privacy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- TERMS -->
+    <section class="section" id="terms">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Terms</h2>
+          <p class="muted">If you want the short version: don’t misuse the site, don’t rely on it as legal/financial advice, and understand offers come from partners.</p>
+        </div>
+
+        <div class="legal reveal">
+          <div class="toc" aria-label="Table of contents">
+            <a href="#accept">1) Acceptance</a>
+            <a href="#service">2) The service</a>
+            <a href="#noadvice">3) No financial/legal advice</a>
+            <a href="#partners">4) Partners and offers</a>
+            <a href="#eligibility">5) Eligibility</a>
+            <a href="#conduct">6) Acceptable use</a>
+            <a href="#ip">7) Intellectual property</a>
+            <a href="#disclaimer">8) Disclaimers</a>
+            <a href="#liability">9) Limitation of liability</a>
+            <a href="#indemnity">10) Indemnity</a>
+            <a href="#changes">11) Changes</a>
+            <a href="#law">12) Governing law</a>
+            <a href="#contact">13) Contact</a>
+          </div>
+
+          <div class="callout">
+            <b>Plain English:</b> We’re a connector. We help route you to options. We’re not your bank, not your lawyer, and we can’t promise outcomes.
+          </div>
+
+          <h2 id="accept">1) Acceptance</h2>
+          <p>
+            By accessing or using this website and related services (the “Services”), you agree to these Terms of Service (the “Terms”).
+            If you do not agree, do not use the Services.
+          </p>
+
+          <h2 id="service">2) The service</h2>
+          <p>
+            We provide information and tools that may help businesses evaluate and connect to potential funding options.
+            We may route your information to third-party partners to evaluate eligibility and provide offers.
+          </p>
+
+          <h2 id="noadvice">3) No financial or legal advice</h2>
+          <p>
+            The Services are provided for informational purposes only and do not constitute legal, tax, accounting, or financial advice.
+            You are responsible for evaluating offers, terms, and risks and for consulting appropriate professionals if needed.
+          </p>
+
+          <h2 id="partners">4) Partners and offers</h2>
+          <p>
+            Funding decisions, offer terms, pricing, timelines, and availability are determined by third-party partners and may vary based on underwriting.
+            We do not guarantee approvals, rates, amounts, or funding times.
+          </p>
+          <p>
+            Partners may require additional information or documentation. You may choose whether to proceed with any offer.
+          </p>
+
+          <h2 id="eligibility">5) Eligibility</h2>
+          <p>
+            You represent that you are at least 18 years old and have the authority to provide information on behalf of the business you submit.
+            You agree to provide accurate, complete information and to update it as needed.
+          </p>
+
+          <h2 id="conduct">6) Acceptable use</h2>
+          <p>You agree not to:</p>
+          <ul>
+            <li>Use the Services for unlawful purposes or in violation of applicable laws</li>
+            <li>Submit false, misleading, or incomplete information</li>
+            <li>Attempt to access or disrupt systems, accounts, or data you do not own</li>
+            <li>Reverse engineer, scrape, or abuse the Services in a way that harms availability or security</li>
+          </ul>
+
+          <h2 id="ip">7) Intellectual property</h2>
+          <p>
+            The Services, content, and branding are owned by us or our licensors and are protected by intellectual property laws.
+            You may not copy, modify, distribute, or create derivative works except as permitted in writing.
+          </p>
+
+          <h2 id="disclaimer">8) Disclaimers</h2>
+          <p>
+            The Services are provided “as is” and “as available.” We disclaim all warranties to the maximum extent permitted by law,
+            including warranties of merchantability, fitness for a particular purpose, and non-infringement.
+          </p>
+
+          <h2 id="liability">9) Limitation of liability</h2>
+          <p>
+            To the maximum extent permitted by law, we will not be liable for indirect, incidental, special, consequential, or punitive damages,
+            or any loss of profits, revenue, data, or goodwill, arising from your use of the Services.
+          </p>
+          <p>
+            To the maximum extent permitted by law, our total liability for any claim arising out of or relating to the Services will not exceed
+            the amount you paid to use the Services (if any) during the twelve (12) months preceding the event giving rise to the claim.
+          </p>
+
+          <h2 id="indemnity">10) Indemnity</h2>
+          <p>
+            You agree to indemnify and hold us harmless from claims, damages, liabilities, and expenses arising from your use of the Services,
+            your violation of these Terms, or your violation of any rights of another party.
+          </p>
+
+          <h2 id="changes">11) Changes</h2>
+          <p>
+            We may update these Terms from time to time. The “Effective” date at the top reflects the latest version.
+            Continued use of the Services after changes means you accept the updated Terms.
+          </p>
+
+          <h2 id="law">12) Governing law</h2>
+          <p>
+            These Terms are governed by the laws of <b>[Your State]</b>, without regard to conflict of law principles.
+            Any disputes will be handled in the courts located in <b>[Your County/State]</b>, unless required otherwise by law.
+          </p>
+
+          <h2 id="contact">13) Contact</h2>
+          <p>
+            Questions? Email <b>legal@[yourdomain].com</b>.
+            If your question relates to an application, include the business name and the email used to apply.
+          </p>
+
+          <div class="callout">
+            <b>Reminder:</b> If you want funding options, the move is simple: submit the file → we review → we route you to lanes that can clear.
+          </div>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="privacy.html">Privacy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container cta-band__inner reveal">
+        <div>
+          <h2 class="h2">Ready for options?</h2>
+          <p class="muted">Start the application. We’ll route you after review.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="process.html">What happens next</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="actionbar__item" href="calculator.html">
+      <span class="actionbar__icon" aria-hidden="true">⌁</span>
+      Calculator
+    </a>
+    <a class="actionbar__item" href="options.html">
+      <span class="actionbar__icon" aria-hidden="true">▦</span>
+      Options
+    </a>
+    <a class="actionbar__item" href="proof.html">
+      <span class="actionbar__icon" aria-hidden="true">★</span>
+      Receipts
+    </a>
+    <a class="actionbar__item actionbar__item--primary" href="get-funded.html">
+      <span class="actionbar__icon" aria-hidden="true">→</span>
+      Get Funded
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">TBD</span>
+        </div>
+        <p class="muted">Fast business funding for operators. $50k–$500k. Decisions in days, not months.</p>
+      </div>
+
+      <div>
+        <div class="footer__h">Capital</div>
+        <a class="footer__a" href="options.html">Pick Your Capital</a>
+        <a class="footer__a" href="calculator.html">Funding Fit Calculator</a>
+        <a class="footer__a" href="playbooks.html">Growth Playbooks</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Company</div>
+        <a class="footer__a" href="process.html">The Process</a>
+        <a class="footer__a" href="proof.html">Deals + Receipts</a>
+        <a class="footer__a" href="about.html">Why Us</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Legal</div>
+        <a class="footer__a" href="privacy.html">Privacy</a>
+        <a class="footer__a" href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="muted">© <span data-year></span> TBD. Built for operators.</div>
+      <div class="muted footer__note">
+        Disclaimer: This site is for informational purposes. If applicable, we connect businesses to funding options and partners.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
