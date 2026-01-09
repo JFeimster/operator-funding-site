@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Growth playbooks for DTC, SaaS, and agencies. Pick a scenario and see the best-fit funding lane." />
+  <title>TBD — Growth Playbooks</title>
+
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-local UI (keep shared CSS stable) */
+    .tiles{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .tile{
+      text-align:left; cursor:pointer; width:100%;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 14px 40px rgba(11,16,34,.06);
+      border-radius: var(--radius2);
+      padding: 16px;
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), border-color 180ms var(--ease);
+    }
+    .tile:hover{ transform: translateY(-2px); box-shadow: 0 18px 55px rgba(11,16,34,.10); }
+    .tile__top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .tile__icon{
+      width: 42px; height: 42px; border-radius: 16px;
+      display:grid; place-items:center;
+      border:1px solid rgba(11,16,34,.10);
+      background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(124,58,237,.14));
+      font-weight: 950;
+    }
+    .tile__title{ font-weight: 950; letter-spacing:-.02em; font-size: 1.05rem; margin: 10px 0 6px; }
+    .tile__desc{ color: rgba(11,16,34,.70); margin:0; }
+    .tile.is-active{ border-color: rgba(59,130,246,.30); }
+
+    .play{
+      margin-top: 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      display:none;
+    }
+    .play.is-open{ display:block; }
+    .play__head{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .play__title{ font-weight: 950; letter-spacing:-.03em; font-size: 1.25rem; margin:0; }
+    .play__sub{ color: rgba(11,16,34,.72); margin:6px 0 0; max-width: 70ch; }
+    .xbtn{
+      border:none; cursor:pointer;
+      width: 42px; height: 42px; border-radius: 14px;
+      background: rgba(11,16,34,.06);
+      font-size: 18px;
+    }
+    .play__grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+    .playcard{
+      border-radius: 18px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(247,248,252,.75);
+      padding: 12px;
+    }
+    .playcard h3{ margin:0 0 6px; font-size:.95rem; letter-spacing:-.01em; }
+    .playcard p, .playcard li{ color: rgba(11,16,34,.74); }
+    .playcard ul{ margin: 8px 0 0 18px; }
+    .playcard b{ color: rgba(11,16,34,.92); }
+    .kicker{ font-size:.78rem; color: rgba(11,16,34,.6); font-weight: 900; letter-spacing:.08em; text-transform: uppercase; }
+    .hl{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.72);
+      font-weight: 900;
+      margin-top: 10px;
+    }
+
+    .notes{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(11,16,34,.10);
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 14px 40px rgba(11,16,34,.06);
+      padding: 16px;
+    }
+    .notes ul{ margin: 0 0 0 18px; }
+    .notes li{ margin: 8px 0; color: rgba(11,16,34,.76); }
+    .notes b{ color: rgba(11,16,34,.92); }
+
+    @media (max-width: 980px){
+      .tiles{ grid-template-columns: 1fr; }
+      .play__grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="header" data-elevate-on-scroll>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="TBD Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">TBD</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__group">
+          <button class="nav__trigger" type="button" data-menu-trigger aria-expanded="false" aria-controls="menu-capital">
+            Capital Menu <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="menu-capital" class="menu" data-menu>
+            <a class="menu__item" href="options.html">Pick Your Capital</a>
+            <a class="menu__item" href="calculator.html">Funding Fit Calculator</a>
+            <a class="menu__item" href="playbooks.html">Growth Playbooks</a>
+          </div>
+        </div>
+
+        <a class="nav__link" href="process.html">The Process</a>
+        <a class="nav__link" href="proof.html">Receipts</a>
+        <a class="nav__link" href="about.html">Why Us</a>
+      </nav>
+
+      <div class="header__cta">
+        <div class="micro"> $50k–$500k • Fast approvals • No bank games</div>
+        <a class="btn btn--primary" href="get-funded.html">
+          Get Funded <span class="btn__hint">2–3 min</span>
+        </a>
+
+        <button class="burger" type="button" aria-label="Open menu" data-burger aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" data-drawer aria-hidden="true">
+      <div class="drawer__panel">
+        <div class="drawer__top">
+          <span class="drawer__title">Navigate</span>
+          <button class="drawer__close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+        </div>
+
+        <div class="drawer__stack">
+          <a class="drawer__link" href="options.html">Pick Your Capital</a>
+          <a class="drawer__link" href="calculator.html">Funding Fit Calculator</a>
+          <a class="drawer__link" href="playbooks.html">Growth Playbooks</a>
+          <a class="drawer__link" href="process.html">The Process</a>
+          <a class="drawer__link" href="proof.html">Deals + Receipts</a>
+          <a class="drawer__link" href="about.html">Humans, Not a Bank</a>
+          <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+        </div>
+      </div>
+      <div class="drawer__backdrop" data-drawer-close></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            Fund the move — not the anxiety
+          </div>
+
+          <h1 class="h1">Growth playbooks for operators.</h1>
+          <p class="lead">
+            Pick a scenario. We’ll show the lane that usually works best — plus the common mistake that makes it expensive.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#scenarios">Pick a scenario</a>
+            <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+          </div>
+
+          <div class="goodline" style="margin-top:12px;">
+            <span class="spark" aria-hidden="true"></span>
+            <span class="mini"><b>Operator rule:</b> the wrong funding lane doesn’t “slow you down” — it taxes your cashflow.</span>
+          </div>
+        </div>
+
+        <div class="hero__panel reveal">
+          <div class="panel">
+            <div class="panel__kicker">Use this page to</div>
+            <div class="panel__title">Choose a lane with intent</div>
+            <div class="panel__body">
+              Each scenario includes a best-fit lane, a checklist for approvals, and the one mistake that kills deals.
+            </div>
+
+            <div class="panel__actions">
+              <a class="btn btn--primary btn--full" href="get-funded.html">Get Funded</a>
+              <a class="btn btn--ghost btn--full" href="options.html">Compare lanes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- SCENARIO TILES -->
+    <section class="section" id="scenarios">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Choose your scenario.</h2>
+          <p class="muted">Click a tile. We’ll drop the playbook below.</p>
+        </div>
+
+        <div class="tiles" data-tiles>
+          <button class="tile reveal is-active" type="button" data-scn="inventory">
+            <div class="tile__top">
+              <div class="tile__icon">▦</div>
+              <span class="tag">Inventory</span>
+            </div>
+            <div class="tile__title">Inventory Ramp</div>
+            <p class="tile__desc">Buy inventory/POs without starving ops.</p>
+          </button>
+
+          <button class="tile reveal" type="button" data-scn="ads">
+            <div class="tile__top">
+              <div class="tile__icon">↗</div>
+              <span class="tag">Growth</span>
+            </div>
+            <div class="tile__title">Ad Scale</div>
+            <p class="tile__desc">Fund marketing without cashflow whiplash.</p>
+          </button>
+
+          <button class="tile reveal" type="button" data-scn="hiring">
+            <div class="tile__top">
+              <div class="tile__icon">✦</div>
+              <span class="tag">Scale</span>
+            </div>
+            <div class="tile__title">Hiring Delivery Team</div>
+            <p class="tile__desc">Staff up before the contract start.</p>
+          </button>
+
+          <button class="tile reveal" type="button" data-scn="gap">
+            <div class="tile__top">
+              <div class="tile__icon">⌁</div>
+              <span class="tag">Ops</span>
+            </div>
+            <div class="tile__title">Cashflow Gap</div>
+            <p class="tile__desc">Smooth timing between receivables and expenses.</p>
+          </button>
+
+          <button class="tile reveal" type="button" data-scn="runway">
+            <div class="tile__top">
+              <div class="tile__icon">⟡</div>
+              <span class="tag">Runway</span>
+            </div>
+            <div class="tile__title">Runway Extension</div>
+            <p class="tile__desc">Buy time without choking the business.</p>
+          </button>
+
+          <button class="tile reveal" type="button" data-scn="expansion">
+            <div class="tile__top">
+              <div class="tile__icon">▣</div>
+              <span class="tag">Planned</span>
+            </div>
+            <div class="tile__title">Expansion Spend</div>
+            <p class="tile__desc">Bigger moves with stable payments (when it fits).</p>
+          </button>
+        </div>
+
+        <!-- Playbook output -->
+        <div class="play reveal is-open" id="playbook" aria-live="polite">
+          <div class="play__head">
+            <div>
+              <div class="kicker">Playbook</div>
+              <h3 class="play__title" id="pTitle">Inventory Ramp</h3>
+              <p class="play__sub" id="pSub">Buy inventory/POs without starving ops. Speed matters here — but you still want terms that breathe.</p>
+
+              <div class="hl" id="pLane">Best-fit lane: <span style="font-weight:950;">Working Capital / Line of Credit</span></div>
+            </div>
+
+            <button class="xbtn" type="button" aria-label="Hide playbook" id="pClose">✕</button>
+          </div>
+
+          <div class="play__grid">
+            <div class="playcard">
+              <h3>What good looks like</h3>
+              <ul id="pLooks">
+                <li><b>Revenue signal:</b> consistent sales (even if seasonal)</li>
+                <li><b>Use-of-funds:</b> inventory/POs, not “random spend”</li>
+                <li><b>Ops reality:</b> you can repay without starving payroll</li>
+              </ul>
+            </div>
+
+            <div class="playcard">
+              <h3>Common mistake</h3>
+              <p id="pMistake">
+                Funding inventory with a lane that pulls too hard weekly. It “works” until it doesn’t — and then cashflow gets weird.
+              </p>
+              <p class="mini" id="pFix"><b>Fix:</b> choose a lane whose repayment cadence matches your cash cycle.</p>
+            </div>
+
+            <div class="playcard">
+              <h3>What we’ll ask for</h3>
+              <p id="pNeed"><b>Bank statements</b> + basic business info. If it’s large, bring a quick use-of-funds plan.</p>
+              <div class="mini">We don’t ask for paperwork to feel important.</div>
+            </div>
+
+            <div class="playcard">
+              <h3>Next step</h3>
+              <p class="mini">If this playbook sounds like you, don’t overthink it.</p>
+              <div class="section__cta" style="margin-top:10px;">
+                <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+                <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OPERATOR NOTES -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="h2">Operator notes (the stuff that actually matters).</h2>
+          <p class="muted">Not motivational quotes. Rules that keep cashflow alive.</p>
+        </div>
+
+        <div class="notes reveal">
+          <ul>
+            <li><b>Don’t fund long-term assets with short-term money.</b> That’s how “growth” becomes a cashflow problem.</li>
+            <li><b>Fast money costs more.</b> Use it intentionally, then refinance into calmer terms if it makes sense.</li>
+            <li><b>Cashflow > vanity growth.</b> If the lane punishes your cycle, it’s the wrong lane.</li>
+            <li><b>Clarity beats optimism.</b> Underwriting loves readable statements and a simple plan.</li>
+          </ul>
+        </div>
+
+        <div class="section__cta reveal">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="options.html">Compare lanes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container cta-band__inner reveal">
+        <div>
+          <h2 class="h2">Pick a scenario. Get funded. Move.</h2>
+          <p class="muted">If you’re doing real revenue, we can usually find the lane that fits.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary" href="get-funded.html">Get Funded</a>
+          <a class="btn btn--ghost" href="calculator.html">Run the Calculator</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom action bar -->
+  <nav class="actionbar" aria-label="Quick actions">
+    <a class="actionbar__item" href="calculator.html">
+      <span class="actionbar__icon" aria-hidden="true">⌁</span>
+      Calculator
+    </a>
+    <a class="actionbar__item" href="options.html">
+      <span class="actionbar__icon" aria-hidden="true">▦</span>
+      Options
+    </a>
+    <a class="actionbar__item" href="proof.html">
+      <span class="actionbar__icon" aria-hidden="true">★</span>
+      Receipts
+    </a>
+    <a class="actionbar__item actionbar__item--primary" href="get-funded.html">
+      <span class="actionbar__icon" aria-hidden="true">→</span>
+      Get Funded
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">TBD</span>
+        </div>
+        <p class="muted">Fast business funding for operators. $50k–$500k. Decisions in days, not months.</p>
+      </div>
+
+      <div>
+        <div class="footer__h">Capital</div>
+        <a class="footer__a" href="options.html">Pick Your Capital</a>
+        <a class="footer__a" href="calculator.html">Funding Fit Calculator</a>
+        <a class="footer__a" href="playbooks.html">Growth Playbooks</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Company</div>
+        <a class="footer__a" href="process.html">The Process</a>
+        <a class="footer__a" href="proof.html">Deals + Receipts</a>
+        <a class="footer__a" href="about.html">Why Us</a>
+      </div>
+
+      <div>
+        <div class="footer__h">Legal</div>
+        <a class="footer__a" href="privacy.html">Privacy</a>
+        <a class="footer__a" href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="muted">© <span data-year></span> TBD. Built for operators.</div>
+      <div class="muted footer__note">
+        Disclaimer: This site is for informational purposes. If applicable, we connect businesses to funding options and partners.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+
+  <script>
+    (function(){
+      const tiles = Array.from(document.querySelectorAll('[data-scn]'));
+      const play = document.getElementById('playbook');
+      const close = document.getElementById('pClose');
+
+      const pTitle = document.getElementById('pTitle');
+      const pSub = document.getElementById('pSub');
+      const pLane = document.getElementById('pLane');
+      const pLooks = document.getElementById('pLooks');
+      const pMistake = document.getElementById('pMistake');
+      const pFix = document.getElementById('pFix');
+      const pNeed = document.getElementById('pNeed');
+
+      const data = {
+        inventory: {
+          title: "Inventory Ramp",
+          sub: "Buy inventory/POs without starving ops. Speed matters here — but you still want terms that breathe.",
+          lane: "Best-fit lane: Working Capital / Line of Credit",
+          looks: [
+            "<li><b>Revenue signal:</b> consistent sales (even if seasonal)</li>",
+            "<li><b>Use-of-funds:</b> inventory/POs, not “random spend”</li>",
+            "<li><b>Ops reality:</b> repayment matches your cash cycle</li>"
+          ],
+          mistake: "Funding inventory with a lane that pulls too hard weekly. It works until it doesn’t — then cashflow gets weird.",
+          fix: "<b>Fix:</b> choose repayment cadence that matches your cash cycle (not your ego).",
+          need: "<b>Bank statements</b> + basic business info. For larger asks, add a 5-line inventory plan."
+        },
+        ads: {
+          title: "Ad Scale",
+          sub: "Fund marketing without cashflow whiplash. You want room to test without panic.",
+          lane: "Best-fit lane: Line of Credit / Revenue-Based",
+          looks: [
+            "<li><b>Signal:</b> stable baseline revenue before you crank spend</li>",
+            "<li><b>Plan:</b> test budget + guardrails (CAC, payback window)</li>",
+            "<li><b>Discipline:</b> you can cut spend fast if metrics dip</li>"
+          ],
+          mistake: "Scaling ads with capital that demands repayment before your payback window completes.",
+          fix: "<b>Fix:</b> match repayment timing to payback timing. Simple. Rare.",
+          need: "<b>Bank statements</b> + a simple ad plan (budget + expected payback)."
+        },
+        hiring: {
+          title: "Hiring Delivery Team",
+          sub: "Staff up before the contract start so delivery doesn’t wobble.",
+          lane: "Best-fit lane: Working Capital / Line",
+          looks: [
+            "<li><b>Signal:</b> signed work / predictable receivables</li>",
+            "<li><b>Use:</b> payroll + ramp costs</li>",
+            "<li><b>Ops:</b> margin supports repayment without stress</li>"
+          ],
+          mistake: "Hiring ahead of cashflow with a lane that pulls aggressively while you’re still onboarding.",
+          fix: "<b>Fix:</b> pick a lane that gives you a ramp, not a chokehold.",
+          need: "<b>Statements</b> + basic info. If available: invoices/receivables summary."
+        },
+        gap: {
+          title: "Cashflow Gap",
+          sub: "Smooth timing between receivables and expenses. Keep delivery clean.",
+          lane: "Best-fit lane: Line of Credit",
+          looks: [
+            "<li><b>Signal:</b> recurring receivables (even if lumpy)</li>",
+            "<li><b>Use:</b> bridge gaps, not fund long-term projects</li>",
+            "<li><b>Habit:</b> pay down + reuse (don’t stack)</li>"
+          ],
+          mistake: "Using short-term money to cover a long-term margin problem.",
+          fix: "<b>Fix:</b> if the gap is permanent, fix pricing/terms — not just funding.",
+          need: "<b>Statements</b> + receivables timing (basic)."
+        },
+        runway: {
+          title: "Runway Extension",
+          sub: "Buy time without choking the business. The goal is calm decisions, not panic funding.",
+          lane: "Best-fit lane: Bridge / Working Capital (case-by-case)",
+          looks: [
+            "<li><b>Signal:</b> clear path to revenue event (close, season, renewal)</li>",
+            "<li><b>Plan:</b> what changes during runway (cuts, growth, focus)</li>",
+            "<li><b>Reality:</b> repayment fits your expected timeline</li>"
+          ],
+          mistake: "Taking runway money without changing anything — then you’re just paying for more stress.",
+          fix: "<b>Fix:</b> runway must come with operational change. Otherwise it’s expensive denial.",
+          need: "<b>Statements</b> + a short runway plan (what changes + when)."
+        },
+        expansion: {
+          title: "Expansion Spend",
+          sub: "Bigger moves with stable payments — if underwriting fits your situation.",
+          lane: "Best-fit lane: Term Loan",
+          looks: [
+            "<li><b>Signal:</b> stable revenue + clear spend ROI</li>",
+            "<li><b>Use:</b> planned spend (equipment, buildout, expansion)</li>",
+            "<li><b>Comfort:</b> you can handle fixed payments</li>"
+          ],
+          mistake: "Funding expansion with short-term money because it’s faster to get.",
+          fix: "<b>Fix:</b> match term length to asset life. Boring. Correct.",
+          need: "<b>Statements</b> + spend plan + basic numbers. Clean files win."
+        }
+      };
+
+      function setActive(btn){
+        tiles.forEach(t => t.classList.toggle('is-active', t === btn));
+      }
+
+      function openPlay(key){
+        const d = data[key] || data.inventory;
+        pTitle.textContent = d.title;
+        pSub.textContent = d.sub;
+        pLane.innerHTML = `Best-fit lane: <span style="font-weight:950;">${d.lane.replace('Best-fit lane: ','')}</span>`;
+        pLooks.innerHTML = d.looks.join('');
+        pMistake.textContent = d.mistake;
+        pFix.innerHTML = d.fix;
+        pNeed.innerHTML = d.need;
+
+        play.classList.add('is-open');
+        play.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+
+      tiles.forEach(btn => btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-scn');
+        setActive(btn);
+        openPlay(key);
+      }));
+
+      close.addEventListener('click', () => play.classList.remove('is-open'));
+
+      // Init
+      openPlay('inventory');
+    })();
+  </script>
+</body>
+</html>
