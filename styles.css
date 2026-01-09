@@ -494,12 +494,19 @@ img{ max-width:100%; display:block; }
 }
 .acc{
   text-align:left;
+}
+.acc summary{
+  list-style:none;
   cursor:pointer;
 }
-.acc__top{
+.acc summary::-webkit-details-marker{ display:none; }
+
+.acc__top{ display:block; }
+.acc__head{
   display:flex; align-items:center; justify-content:space-between;
   gap: 10px;
 }
+
 .tag{
   font-weight: 900;
   font-size: .78rem;
@@ -511,12 +518,10 @@ img{ max-width:100%; display:block; }
   background: rgba(247,248,252,.9);
 }
 .acc__body{
-  display:none;
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(11,16,34,.08);
 }
-.acc.is-open .acc__body{ display:block; }
 
 .list{ margin: 0 0 10px 18px; color: rgba(11,16,34,.75); }
 .list b{ color: rgba(11,16,34,.92); }
