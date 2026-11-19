@@ -40,23 +40,23 @@ There is **no framework or build step**. Do not migrate to Next.js, React, Vite,
 | File | Purpose |
 | --- | --- |
 | `index.html` | Homepage / primary funding entry point |
-| `options.html` | Capital options and tradeoffs |
-| `calculator.html` | Illustrative Funding Fit calculator |
-| `playbooks.html` | Growth and capital-use scenarios |
-| `proof.html` | Funding outcomes / proof wall (**unverified content; review required**) |
-| `process.html` | Application and funding process |
-| `get-funded.html` | Four-step application UI (**no working lead submission yet**) |
-| `about.html` | Operating approach and positioning |
-| `privacy.html` | Draft privacy policy (**placeholders remain**) |
-| `terms.html` | Draft terms (**placeholders remain**) |
+| `pages/options.html` | Capital options and tradeoffs |
+| `pages/calculator.html` | Illustrative Funding Fit calculator |
+| `pages/playbooks.html` | Growth and capital-use scenarios |
+| `pages/proof.html` | Funding outcomes / proof wall (**unverified content; review required**) |
+| `pages/process.html` | Application and funding process |
+| `pages/get-funded.html` | Four-step application UI (**no working lead submission yet**) |
+| `pages/about.html` | Operating approach and positioning |
+| `pages/privacy.html` | Draft privacy policy (**placeholders remain**) |
+| `pages/terms.html` | Draft terms (**placeholders remain**) |
 
 Shared files: `assets/css/styles.css`, `assets/js/app.js`, `AGENTS.md`, `TASKS.md`, `PROJECT_STATUS.md`, and this README.
 
 ## Repo organization
 
-All 10 HTML pages remain at the root and preserve their URLs. Shared assets are in `assets/css/` and `assets/js/`; technical notes are in `docs/`. Future `api/` and `tests/` directories will be added only with real implementations, not empty placeholders.
+The homepage stays at the root; nine secondary HTML files live under `pages/`. Vercel rewrites in `vercel.json` preserve the original public `/*.html` URLs. Shared assets live in `assets/css/` and `assets/js/`, with tracked placeholders for `assets/images/` and `assets/icons/`. The `api/integrations.md` document is planning-only; `tests/` is tracked with `.gitkeep`. No server endpoint or tests have been created.
 
-- [Architecture v1.1](docs/architecture.md)
+- [Architecture v1.2](docs/architecture.md)
 - [Launch checklist](docs/launch-checklist.md)
 
 ## Run locally
@@ -73,7 +73,7 @@ For example, with Python installed:
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000/`. Local static previewing **does not** validate submission, routing, security, or Vercel behavior.
+Then visit `http://localhost:8000/`. Python’s simple static server does **not** implement the Vercel rewrites: secondary pages can be previewed at `/pages/{name}.html`, while canonical public URLs must be checked on Vercel or in a Vercel-compatible preview. Local static previewing **does not** validate submission, routing, security, or Vercel behavior.
 
 ## Current implementation
 

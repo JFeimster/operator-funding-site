@@ -3,7 +3,9 @@
 **Not launch approval.** This is a source-backed checklist for the future production-readiness phase. Use synthetic lead data for tests.
 
 ## Repository and routing
-- [ ] All ten HTML URLs resolve.
+- [ ] All ten canonical public HTML URLs resolve (Vercel rewrites target nine sources in `pages/`).
+- [ ] Direct `/pages/{name}.html` accesses do not break asset or navigation links.
+- [ ] `vercel.json` contains all nine rewrite rules and no missing target files.
 - [ ] Every HTML page loads `/assets/css/styles.css` and `/assets/js/app.js`; no stale root references.
 - [ ] Internal navigation and all Get Funded CTAs work.
 - [ ] Production Vercel SHA matches authorized GitHub commit.

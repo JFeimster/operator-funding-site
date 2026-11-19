@@ -1,16 +1,16 @@
 # AGENTS.md — Operator Funding Site
 
-> Proposed revision, prepared November 19, 2026. Not merged to GitHub.
+> Maintained project guardrails. Updated November 19, 2026.
 
 ## Project mandate
-A US operator-first business funding website for established small businesses exploring approximately $50,000–$500,000 in capital. Brand is TBD. Primary action: **Get Funded** → `get-funded.html`.
+A US operator-first business funding website for established small businesses exploring approximately $50,000–$500,000 in capital. Brand is TBD. Primary action: **Get Funded** → `/get-funded.html`.
 
 ## Canonical source and architecture
 - Canonical repository: `JFeimster/operator-funding-site`, branch `main`.
 - Keep the existing static HTML5/CSS3/vanilla JavaScript architecture. No framework, build pipeline, or `package.json` without a specific, approved justification.
-- Preserve the 10 current HTML routes, `assets/css/styles.css`, and `assets/js/app.js`. Do not duplicate pages or rebuild working sections.
+- Preserve the 10 existing public HTML routes (root index plus Vercel-rewritten pages), `assets/css/styles.css`, and `assets/js/app.js`. Do not duplicate pages or rebuild working sections.
 - A narrowly scoped Vercel Function/API endpoint is compatible with the static frontend **if approved**, because true secure lead handling cannot be implemented in browser-only JavaScript.
-- Keep root HTML page routes; shared assets live in `assets/css/` and `assets/js/`. See `docs/architecture.md`.
+- Keep `index.html` at root and secondary source files under `pages/`; `vercel.json` maintains canonical `/*.html` public URLs. Shared assets live in `assets/css/` and `assets/js/`. See `docs/architecture.md`.
 - Check the current source, recent PRs, and actual Vercel deployment before proposing changes.
 
 ## Execution constraints

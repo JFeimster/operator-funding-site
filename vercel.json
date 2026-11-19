@@ -1,0 +1,40 @@
+{
+  "rewrites": [
+    {
+      "source": "/get-funded.html",
+      "destination": "/pages/get-funded.html"
+    },
+    {
+      "source": "/options.html",
+      "destination": "/pages/options.html"
+    },
+    {
+      "source": "/calculator.html",
+      "destination": "/pages/calculator.html"
+    },
+    {
+      "source": "/process.html",
+      "destination": "/pages/process.html"
+    },
+    {
+      "source": "/playbooks.html",
+      "destination": "/pages/playbooks.html"
+    },
+    {
+      "source": "/proof.html",
+      "destination": "/pages/proof.html"
+    },
+    {
+      "source": "/about.html",
+      "destination": "/pages/about.html"
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/pages/privacy.html"
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/pages/terms.html"
+    }
+  ]
+}

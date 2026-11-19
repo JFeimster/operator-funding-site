@@ -1,8 +1,9 @@
 # TASKS.md — Operator Funding Site Roadmap
 
-> **Proposed replacement**, prepared November 19, 2026. Not committed. Use this rather than resuming the stale Google Jules checklist.
+> Active prioritized backlog. Review current status before executing tasks.
 
 ## Status and sequencing
+- **Architecture v1.2:** secondary HTML sources live under `pages/`, homepage at root, legacy public URLs preserved via `vercel.json` rewrites. Tracked images/icons/tests placeholders and planning-only `api/integrations.md` were added. No backend work authorized by this organization change.
 - **Architecture v1.1:** relocated existing shared CSS/JS to `assets/css/` and `assets/js/`, updated the 10 HTML references, and added `docs/architecture.md` and `docs/launch-checklist.md`. No behavioral changes; deployed runtime requires verification.
 - Source of truth: `main` at baseline SHA `4bfa569`.
 - **DONE (merged, runtime QA outstanding):** prior Task 01 fail-safe styles, Task 02 homepage hardening (PR #1), Task 03 CSS polish (PR #2).
@@ -16,15 +17,15 @@
 ### FND-001 — Stop false application success until durable lead delivery is available
 - **Priority:** Critical | **Value:** Prevents applicant loss and misleading receipt messages | **Size:** S | **Deployment risk:** Medium
 - **Scope:** Gate/replace the present faux success state on submission. Keep it a prototype until FND-002 is active. Clearly differentiate incomplete drafts from received applications.
-- **Files:** `get-funded.html`; potentially `AGENTS.md`, `PROJECT_STATUS.md`.
+- **Files:** `pages/get-funded.html`; potentially `AGENTS.md`, `PROJECT_STATUS.md`.
 - **Dependencies:** None. Avoid taking real submissions during implementation.
 - **Acceptance:** No pathway shows “Received” without an acknowledged successful response from a live intake handler. Failed/offline submissions display a truthful recovery state. QA uses fictitious test data.
-- **Evidence:** `get-funded.html` application submit handler comments say `no backend yet` and no POST exists.
+- **Evidence:** `pages/get-funded.html` application submit handler comments say `no backend yet` and no POST exists.
 
 ### FND-006 — Repair capital options accordion and semantic markup
 - **Priority:** High | **Value:** Fixes navigation and product comprehension | **Size:** S | **Deployment risk:** Low
 - **Scope:** Replace nested button/anchor blocks with native accessible disclosure or equivalent valid markup; preserve card copy and CTAs. Verify the local lane wizard's jump links.
-- **Files:** `options.html`, `assets/css/styles.css`.
+- **Files:** `pages/options.html`, `assets/css/styles.css`.
 - **Dependencies:** None; can ship independently of intake.
 - **Acceptance:** Each lane opens and closes by mouse and keyboard; links inside open content work; markup is valid; no JS dependency for basic disclosure; no regressions on mobile.
 
@@ -40,7 +41,7 @@
 ### FND-008 — Conversion-driven page and mobile UX improvements
 - **Priority:** High | **Value:** Higher qualified application starts and less abandonment | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Prioritize operator positioning by audience, clear primary action, trust near CTA, form progress/field explanations, meaningful cross-page sequencing, and mobile action-bar/form readability. Preserve current aesthetics and functional sections.
-- **Files:** `index.html`, `options.html`, `get-funded.html`, `assets/css/styles.css`, selected supporting pages.
+- **Files:** `index.html`, `pages/options.html`, `pages/get-funded.html`, `assets/css/styles.css`, selected supporting pages.
 - **Dependencies:** FND-001/002/003/004 definitions, and proof replacement strategy.
 - **Acceptance:** One obvious primary CTA; no contradictory copy; mobile layouts verified at representative small/medium/large viewports; CTA path has no dead end; measurable start/completion events once tracking exists.
 
@@ -56,21 +57,21 @@
 ### FND-002 — Build a real secure, idempotent funding-intake pipeline
 - **Priority:** Critical | **Value:** Creates real applications and traceable lead delivery | **Size:** L | **Deployment risk:** High
 - **Scope:** First inspect existing approved Supabase/CRM/webhook infrastructure and choose a single canonical destination. Preferred minimal pattern: existing static form → same-origin Vercel Function → server-side validation, spam and rate controls, idempotent durable record → monitored routing/notification. No privileged keys in browser. Use least-privilege server secrets and redact logs. Do not build a full portal.
-- **Files:** `get-funded.html`, proposed `api/apply.js` (or approved existing endpoint adapter), `vercel.json` only if necessary, docs and test fixtures.
+- **Files:** `pages/get-funded.html`, proposed `api/apply.js` (or approved existing endpoint adapter), `vercel.json` only if necessary, docs and test fixtures.
 - **Dependencies:** FND-003 verified operating identity/consent requirements; authorized destination credentials and record owner; explicit implementation approval.
 - **Acceptance:** Test application with fictitious values reaches the approved system exactly once and can be traced by safe request ID; invalid, duplicate, bot-like, offline, and upstream-failure cases fail honestly; monitoring/owner handoff defined; client cannot access secrets.
 
 ### FND-004 — Intake validation, consent, and save/resume redesign
 - **Priority:** Critical | **Value:** Data quality, applicant trust, lower support overhead | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Enforce complete step and final-submit schema; validate state/phone/email/numeric bounds and choices; review opt-in contact channel and appropriate partner-sharing/communications permission. Remove insecure sensitive draft storage or replace with explicitly approved secure resume design. Do not claim a server-side resume feature until implemented.
-- **Files:** `get-funded.html`; selected `privacy.html`; server validator from FND-002.
+- **Files:** `pages/get-funded.html`; selected `pages/privacy.html`; server validator from FND-002.
 - **Dependencies:** FND-002 endpoint schema, FND-003 policy decisions.
 - **Acceptance:** No sensitive application draft persists in unapproved localStorage; invalid inputs cannot reach storage or show success; consent state is captured with the application; truthful save/resume behavior and accessible errors verified.
 
 ### FND-007 — Reframe funding calculator as an illustrative decision tool
 - **Priority:** High | **Value:** Protects trust and qualifies users more reliably | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Remove implication of underwriting or eligibility from unsupported multipliers and the $50k minimum clamp. Either calibrate against verified partner eligibility logic or explicitly reframe as scenario planning with non-offer outputs and sensible out-of-range behavior. Keep genuine financial estimates distinct from a financing offer.
-- **Files:** `calculator.html`, `index.html` and CTA copy if necessary.
+- **Files:** `pages/calculator.html`, `index.html` and CTA copy if necessary.
 - **Dependencies:** FND-003 product/claim verification; product-lane assumptions from actual partners.
 - **Acceptance:** Low-revenue examples never imply guaranteed $50k eligibility; range inputs have defensible boundaries; disclaimer visible at results; outputs tested across edge cases.
 
@@ -79,14 +80,14 @@
 ### FND-003 — Verify identity, privacy, consent, and all financial claims
 - **Priority:** Critical | **Value:** Legitimacy and protection of applicants | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Confirm brand/operator legal name, contact, geography, lender/broker/marketplace role, applicable disclosures, sharing policy, credit-check statements, speed/eligibility language, and Terms/Privacy effective dates. Legal/compliance reviewers must assess applicable requirements; do not assume approvals.
-- **Files:** `privacy.html`, `terms.html`, headers/footers on all 10 pages, `get-funded.html`, potentially new disclosure page if required.
+- **Files:** `pages/privacy.html`, `pages/terms.html`, headers/footers on all 10 pages, `pages/get-funded.html`, potentially new disclosure page if required.
 - **Dependencies:** Real operating entity and partner arrangements; legal/compliance input.
 - **Acceptance:** No placeholder contacts, dates, or governing state; clear data use and consent; material claims supported or qualified; legal owner signs off before public collection.
 
 ### FND-005 — Replace or validate evidence on the proof wall
 - **Priority:** Critical | **Value:** Removes unsupported trust claims | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Audit each of the nine proof entries and any homepage outcomes. Either attach documented client authorization and evidence or remove/relabel as clearly hypothetical examples; avoid testimonial wording for invented examples. Never publish fabricated logos/reviews/metrics.
-- **Files:** `proof.html`, `index.html`, potentially `about.html`.
+- **Files:** `pages/proof.html`, `index.html`, potentially `pages/about.html`.
 - **Dependencies:** Actual partner/client evidence owner; FND-003 claims policy.
 - **Acceptance:** Every presented result has verifiable provenance or is unmistakably an illustrative scenario; disclosures appear with content; no unsupported “real deals” claim remains.
 
@@ -95,7 +96,7 @@
 ### FND-011 — Implement privacy-appropriate analytics and attribution
 - **Priority:** Medium | **Value:** Makes funnel performance measurable | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Select minimal events (CTA click, application start, step completion, validated submit attempt, actual accepted receipt, error). Use approved privacy approach; avoid PII in event names, URLs, payloads or logs. Capture source attribution only when appropriate.
-- **Files:** `get-funded.html`, `assets/js/app.js`, approved endpoint/integration.
+- **Files:** `pages/get-funded.html`, `assets/js/app.js`, approved endpoint/integration.
 - **Dependencies:** FND-002 confirmed receipt; FND-003 consent/analytics policy.
 - **Acceptance:** Conversion success counts only durable acknowledged intake; test events trace a funnel, without raw personal/financial data.
 

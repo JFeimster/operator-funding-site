@@ -1,48 +1,61 @@
-# Operator Funding Site — architecture v1.1
+# Operator Funding Site — architecture v1.2
 
-## Source and deployment
-- Canonical repo: `JFeimster/operator-funding-site`, branch `main`.
-- Hosting: Vercel; no build step or framework.
-- Current interface is a prototype: `get-funded.html` does **not** deliver real applications.
+## Canonical repository and deployment
+- GitHub `JFeimster/operator-funding-site`, branch `main`.
+- Vercel hosts static HTML/CSS/JavaScript with no framework or build step.
+- Public URLs `/index.html` and `/{page}.html` remain unchanged. Vercel rewrites those secondary page URLs to physical files under `pages/`.
+- The funding intake UI is **not** a working lead-delivery backend.
 
-## Directory layout
+## Repository layout
 ```text
 /
 ├── index.html
-├── get-funded.html
-├── options.html
-├── calculator.html
-├── process.html
-├── playbooks.html
-├── proof.html
-├── about.html
-├── privacy.html
-├── terms.html
+├── pages/
+│   ├── get-funded.html
+│   ├── options.html
+│   ├── calculator.html
+│   ├── process.html
+│   ├── playbooks.html
+│   ├── proof.html
+│   ├── about.html
+│   ├── privacy.html
+│   └── terms.html
 ├── assets/
 │   ├── css/styles.css
-│   └── js/app.js
+│   ├── js/app.js
+│   ├── images/.gitkeep
+│   └── icons/.gitkeep
+├── api/
+│   └── integrations.md
+├── tests/
+│   └── .gitkeep
 ├── docs/
 │   ├── architecture.md
 │   └── launch-checklist.md
-├── README.md
+├── vercel.json
 ├── AGENTS.md
 ├── TASKS.md
 ├── PROJECT_STATUS.md
+├── README.md
 └── .gitignore
 ```
 
-## URL and asset contract
-1. All 10 HTML pages stay at repository root to preserve existing `.html` links and public URLs.
-2. Each page loads `assets/css/styles.css` (preload and stylesheet) and `assets/js/app.js` (deferred).
-3. The moved CSS and JS retain their original contents; layout, behavior, and app logic are not intentionally changed.
-4. Add `assets/images/`, `assets/icons/`, `tests/`, or `api/` only when actual files exist.
-5. No Next.js/React or new build system without separate approval.
+## Routing rules
+- Keep `index.html` at root.
+- Keep secondary HTML sources under `pages/`.
+- The `vercel.json` rewrite maps each existing public `/{name}.html` to `/pages/{name}.html` without changing the visitor-facing URL.
+- All links between pages and to assets use **root-relative paths** such as `/get-funded.html` and `/assets/css/styles.css`, so both canonical URLs and direct `/pages/` accesses resolve references correctly.
+- Do not replace the rewrites with permanent redirects unless a deliberate URL migration is authorized.
+- A basic `python -m http.server` does **not** process Vercel rewrites; use a Vercel-compatible local preview to test canonical URLs. Python static preview can load `/pages/{name}.html` directly.
 
-## Future integration boundary
-- Keep the funding intake UI at `get-funded.html`.
-- An approved same-origin Vercel Function may later accept securely validated requests and deliver them to an approved canonical destination.
-- Do not expose privileged credentials to frontend JavaScript. Show a successful receipt only after durable server acknowledgment.
-- No API route or backend was added with this architecture change.
+## Assets
+- `assets/images/` and `assets/icons/` are intentionally empty except for `.gitkeep` so Git tracks the folders. Replace placeholders with real assets when approved.
+- Existing CSS and JS contents were preserved. No new framework, npm dependency, or component system was introduced.
 
-## Project workflow
-Read [../README.md](../README.md), [../AGENTS.md](../AGENTS.md), [../TASKS.md](../TASKS.md), and [../PROJECT_STATUS.md](../PROJECT_STATUS.md) before implementing new tasks. Record real commit, deployment, and test results in the status document. A Vercel READY status is not browser-level verification.
+## Future backend boundary
+- `api/integrations.md` contains planning guidance only; **no server handler** is implemented.
+- A future authorized server-side endpoint may securely validate and transmit applications to the approved system. Success must mean the application was durably received.
+- The current false-success submission state and sensitive browser draft remain unresolved and must not be treated as production-ready.
+
+## Change control
+Read the root README, AGENTS, TASKS and PROJECT_STATUS first. Document actual source changes, tests, deployment SHA, and outstanding blockers.

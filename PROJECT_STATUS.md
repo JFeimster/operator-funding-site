@@ -1,6 +1,6 @@
 # PROJECT_STATUS.md — Operator Funding Site
 
-> Proposed initial status file. Audit date: **2026-11-19**. Read-only inspection; no repo or deployment changes made.
+> Initial audit: **2026-11-19**. This file now tracks subsequent approved repository changes.
 
 ## Current status
 **PROTOTYPE / NOT CLEARED FOR REAL LEAD COLLECTION**
@@ -14,8 +14,14 @@
 - **Operating brand:** TBD
 - **QA limitation:** Direct public-site retrieval failed. Vercel indicates SSO protection on deployment URLs; browser-rendered visuals, functional click paths, console logs, mobile layouts, and a no-JS run were not verified.
 
+## Architecture v1.2 (2026-11-19)
+- Nine secondary source pages moved under `pages/`; root `index.html` retained. Existing public `/*.html` URLs preserved through `vercel.json` rewrites.
+- Standardized internal links and asset references to root-relative URLs, including for direct `/pages/` access.
+- Added tracked placeholders in `assets/images/`, `assets/icons/`, and `tests/`; added planning-only `api/integrations.md`.
+- No backend handler, tests, or financial application functional changes were made. Production runtime requires verification.
+
 ## Architecture v1.1 (2026-11-19)
-- All ten original HTML routes preserved at root.
+- All ten original public HTML routes preserved; source files were originally at root, prior to v1.2.
 - Shared CSS/JS moved, with contents unchanged, to `assets/css/styles.css` and `assets/js/app.js`; 10 pages link to new paths.
 - Added `docs/architecture.md` and `docs/launch-checklist.md` and updated root documentation.
 - Source-level asset reference validation completed during preparation; live deployment and runtime behavior remain unverified until tested.
@@ -32,15 +38,15 @@
 | Static href / fragment scan across ten pages | Local analysis of checked-out `main` file contents | No missing local HTML destinations or missing same-page IDs found; runtime pending |
 
 ## Critical open blockers
-1. **FND-001:** `get-funded.html` uses client-only success and no outbound submission. Evidence: lines ~805–829.
-2. **FND-002:** Draft saved in browser localStorage with financial/contact fields; no secure cross-device resume. Evidence: `get-funded.html` ~776–799.
-3. **FND-003:** Unverified quantified funding outcomes and testimonials on `proof.html` (nine proof-wall entries; individual statements presented as real).
+1. **FND-001:** `pages/get-funded.html` uses client-only success and no outbound submission. Evidence: lines ~805–829.
+2. **FND-002:** Draft saved in browser localStorage with financial/contact fields; no secure cross-device resume. Evidence: `pages/get-funded.html` ~776–799.
+3. **FND-003:** Unverified quantified funding outcomes and testimonials on `pages/proof.html` (nine proof-wall entries; individual statements presented as real).
 4. **FND-004:** Privacy/Terms contain placeholders for effective date, contact and legal jurisdiction; business/operator identity and consent need review.
-5. **FND-005:** Heuristic calculator clamps estimates to $50k minimum; cannot be treated as qualification. Evidence: `calculator.html` calculation script.
+5. **FND-005:** Heuristic calculator clamps estimates to $50k minimum; cannot be treated as qualification. Evidence: `pages/calculator.html` calculation script.
 
 ## Additional priority defects
-- `options.html` uses `<button>` wrappers containing anchor links in the capital lane accordion and lacks matching disclosure toggle behavior in the current global script.
-- `get-funded.html` only validates basic values and the current wizard step; lacks complete per-field and server-side validation.
+- `pages/options.html` uses `<button>` wrappers containing anchor links in the capital lane accordion and lacks matching disclosure toggle behavior in the current global script.
+- `pages/get-funded.html` only validates basic values and the current wizard step; lacks complete per-field and server-side validation.
 - `assets/js/app.js` reveal logic has no `IntersectionObserver` feature test or fallback after setting `.js`; keyboard focus for mobile drawer requires audit.
 - Existing `TASKS.md` still marks Task 02/03 in progress despite merged PR #1/#2 and references discontinued Google Jules.
 - No automated test suite, sitemap, or `robots.txt` is in `main`; `PROJECT_STATUS.md` now exists.
@@ -56,10 +62,10 @@
 Confirm the **legitimate submission destination and operating entity** before activating Get Funded. Preserve the static frontend. A same-origin Vercel Function that validates and durably stores/routes leads in an already approved source-of-truth system is a good default; do not create a new database, CRM pipeline, or webhook until the existing systems are inspected and the specific implementation is approved.
 
 ## Update log
-| 2026-11-19 | Architecture v1.1 | See GitHub commit history | Verify deployment | 10 HTML references validated in source | Funding intake/trust blockers unchanged |
-
 | Date | Task ID | Commit / PR | Deploy | Verification | Open blocker |
 | --- | --- | --- | --- | --- | --- |
+| 2026-11-19 | Architecture v1.2 | See corresponding GitHub commit | Verify Vercel deployment | Source paths, rewrites and references checked | Application/trust blockers unchanged |
+| 2026-11-19 | Architecture v1.1 | `4ff3255` | READY (Vercel) | 10 HTML references source-verified | Critical blockers unchanged |
 | 2026-11-19 | Read-only baseline audit | `4bfa569` (existing) | `dpl_EMyigt2QXgBf1LGL2UjbxuFmrU8r` READY | GitHub source, PR history, Vercel records, static links | Lead funnel mock; proof/legal/estimates unverified; runtime browser QA pending |
 
 ## Future update format
