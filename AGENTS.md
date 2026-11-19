@@ -8,8 +8,9 @@ A US operator-first business funding website for established small businesses ex
 ## Canonical source and architecture
 - Canonical repository: `JFeimster/operator-funding-site`, branch `main`.
 - Keep the existing static HTML5/CSS3/vanilla JavaScript architecture. No framework, build pipeline, or `package.json` without a specific, approved justification.
-- Preserve the 10 current HTML routes, `styles.css`, and `app.js`. Do not duplicate pages or rebuild working sections.
+- Preserve the 10 current HTML routes, `assets/css/styles.css`, and `assets/js/app.js`. Do not duplicate pages or rebuild working sections.
 - A narrowly scoped Vercel Function/API endpoint is compatible with the static frontend **if approved**, because true secure lead handling cannot be implemented in browser-only JavaScript.
+- Keep root HTML page routes; shared assets live in `assets/css/` and `assets/js/`. See `docs/architecture.md`.
 - Check the current source, recent PRs, and actual Vercel deployment before proposing changes.
 
 ## Execution constraints

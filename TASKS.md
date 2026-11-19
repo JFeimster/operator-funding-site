@@ -3,6 +3,7 @@
 > **Proposed replacement**, prepared November 19, 2026. Not committed. Use this rather than resuming the stale Google Jules checklist.
 
 ## Status and sequencing
+- **Architecture v1.1:** relocated existing shared CSS/JS to `assets/css/` and `assets/js/`, updated the 10 HTML references, and added `docs/architecture.md` and `docs/launch-checklist.md`. No behavioral changes; deployed runtime requires verification.
 - Source of truth: `main` at baseline SHA `4bfa569`.
 - **DONE (merged, runtime QA outstanding):** prior Task 01 fail-safe styles, Task 02 homepage hardening (PR #1), Task 03 CSS polish (PR #2).
 - **OPEN:** legacy Task 04 CTA consistency; re-scope after reviewing claim accuracy and verified submission infrastructure. Do **not** replicate the old `Fast approvals • Minimal docs` microline without substantiation.
@@ -23,14 +24,14 @@
 ### FND-006 — Repair capital options accordion and semantic markup
 - **Priority:** High | **Value:** Fixes navigation and product comprehension | **Size:** S | **Deployment risk:** Low
 - **Scope:** Replace nested button/anchor blocks with native accessible disclosure or equivalent valid markup; preserve card copy and CTAs. Verify the local lane wizard's jump links.
-- **Files:** `options.html`, `styles.css`.
+- **Files:** `options.html`, `assets/css/styles.css`.
 - **Dependencies:** None; can ship independently of intake.
 - **Acceptance:** Each lane opens and closes by mouse and keyboard; links inside open content work; markup is valid; no JS dependency for basic disclosure; no regressions on mobile.
 
 ### FND-010 — Static architecture, SEO, and accessibility hardening
 - **Priority:** Medium | **Value:** More discoverability, less regression risk | **Size:** M | **Deployment risk:** Low
 - **Scope:** Finish URL/canonical metadata, sitemap/robots when site is publication-ready, valid semantics, keyboard focus, menu focus restoration, reduced-motion and reveal fail-safe; preserve no-build architecture.
-- **Files:** `app.js`, `styles.css`, targeted HTML pages, `sitemap.xml`, `robots.txt` if approved.
+- **Files:** `assets/js/app.js`, `assets/css/styles.css`, targeted HTML pages, `sitemap.xml`, `robots.txt` if approved.
 - **Dependencies:** FND-003 for canonical brand/domain; browser QA access.
 - **Acceptance:** No unverified structured-data claims; no hidden no-JS content; tab order, screen-reader labels, and mobile behavior tested; no broken routes.
 
@@ -39,14 +40,14 @@
 ### FND-008 — Conversion-driven page and mobile UX improvements
 - **Priority:** High | **Value:** Higher qualified application starts and less abandonment | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Prioritize operator positioning by audience, clear primary action, trust near CTA, form progress/field explanations, meaningful cross-page sequencing, and mobile action-bar/form readability. Preserve current aesthetics and functional sections.
-- **Files:** `index.html`, `options.html`, `get-funded.html`, `styles.css`, selected supporting pages.
+- **Files:** `index.html`, `options.html`, `get-funded.html`, `assets/css/styles.css`, selected supporting pages.
 - **Dependencies:** FND-001/002/003/004 definitions, and proof replacement strategy.
 - **Acceptance:** One obvious primary CTA; no contradictory copy; mobile layouts verified at representative small/medium/large viewports; CTA path has no dead end; measurable start/completion events once tracking exists.
 
 ### FND-009 — Targeted design polish (not another micro-interaction task)
 - **Priority:** Medium | **Value:** Credibility and product quality without costly rebuild | **Size:** M | **Deployment risk:** Low
 - **Scope:** Use existing blue-violet/dark-ops system, but improve hierarchy, whitespace, proof presentation, form/error visual states, and card density. Do not redo already merged Task 03.
-- **Files:** `styles.css`, approved HTML files.
+- **Files:** `assets/css/styles.css`, approved HTML files.
 - **Dependencies:** FND-008 priorities and browser visual review.
 - **Acceptance:** Responsive, high-contrast, reduced-motion-aware layouts; no performance regression; design remains coherent across all pages.
 
@@ -94,7 +95,7 @@
 ### FND-011 — Implement privacy-appropriate analytics and attribution
 - **Priority:** Medium | **Value:** Makes funnel performance measurable | **Size:** M | **Deployment risk:** Medium
 - **Scope:** Select minimal events (CTA click, application start, step completion, validated submit attempt, actual accepted receipt, error). Use approved privacy approach; avoid PII in event names, URLs, payloads or logs. Capture source attribution only when appropriate.
-- **Files:** `get-funded.html`, `app.js`, approved endpoint/integration.
+- **Files:** `get-funded.html`, `assets/js/app.js`, approved endpoint/integration.
 - **Dependencies:** FND-002 confirmed receipt; FND-003 consent/analytics policy.
 - **Acceptance:** Conversion success counts only durable acknowledged intake; test events trace a funnel, without raw personal/financial data.
 

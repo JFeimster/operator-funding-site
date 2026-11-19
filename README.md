@@ -29,8 +29,8 @@ The GitHub `main` branch is the canonical source of truth. Vercel deploys from G
 This project intentionally uses a simple, framework-free multipage architecture:
 
 - **HTML5** for page structure and content
-- **CSS3** in `styles.css` for shared visual styles and responsive layouts
-- **Vanilla JavaScript** in `app.js` plus small page-local scripts for interactions
+- **CSS3** in `assets/css/styles.css` for shared visual styles and responsive layouts
+- **Vanilla JavaScript** in `assets/js/app.js` plus small page-local scripts for interactions
 - **GitHub** for source control and **Vercel** for hosting
 
 There is **no framework or build step**. Do not migrate to Next.js, React, Vite, or a website builder without a demonstrated need and explicit approval. A narrowly scoped server-side Vercel Function may eventually be appropriate for secure application intake without replacing the static frontend.
@@ -50,7 +50,14 @@ There is **no framework or build step**. Do not migrate to Next.js, React, Vite,
 | `privacy.html` | Draft privacy policy (**placeholders remain**) |
 | `terms.html` | Draft terms (**placeholders remain**) |
 
-Shared files: `styles.css`, `app.js`, `AGENTS.md`, `TASKS.md`, `PROJECT_STATUS.md`, and this README.
+Shared files: `assets/css/styles.css`, `assets/js/app.js`, `AGENTS.md`, `TASKS.md`, `PROJECT_STATUS.md`, and this README.
+
+## Repo organization
+
+All 10 HTML pages remain at the root and preserve their URLs. Shared assets are in `assets/css/` and `assets/js/`; technical notes are in `docs/`. Future `api/` and `tests/` directories will be added only with real implementations, not empty placeholders.
+
+- [Architecture v1.1](docs/architecture.md)
+- [Launch checklist](docs/launch-checklist.md)
 
 ## Run locally
 

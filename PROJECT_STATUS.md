@@ -10,15 +10,22 @@
 - **Head SHA:** `4bfa56905670f55034aeab40a0842f421fe8097a` (2026-01-09)
 - **Vercel project:** `operator-funding-site`, ID `prj_dVn4rdzfHZLZkKcWJHe22FyzMiUI`
 - **Production deployment:** `dpl_EMyigt2QXgBf1LGL2UjbxuFmrU8r` — READY, same SHA, target=production, mapped to `operator-funding-site.vercel.app`
-- **Stack:** 10 static HTML pages, `styles.css`, `app.js`, no build step
+- **Stack:** 10 static HTML pages, `assets/css/styles.css`, `assets/js/app.js`, no build step
 - **Operating brand:** TBD
 - **QA limitation:** Direct public-site retrieval failed. Vercel indicates SSO protection on deployment URLs; browser-rendered visuals, functional click paths, console logs, mobile layouts, and a no-JS run were not verified.
+
+## Architecture v1.1 (2026-11-19)
+- All ten original HTML routes preserved at root.
+- Shared CSS/JS moved, with contents unchanged, to `assets/css/styles.css` and `assets/js/app.js`; 10 pages link to new paths.
+- Added `docs/architecture.md` and `docs/launch-checklist.md` and updated root documentation.
+- Source-level asset reference validation completed during preparation; live deployment and runtime behavior remain unverified until tested.
+- Existing application/security/trust blockers remain open.
 
 ## Verified completed work
 | Work | Evidence | Status |
 | --- | --- | --- |
 | Basic ten-page architecture and primary CTA navigation | `main` tree and source links | Source verified |
-| Reveal default-visible styles and `.js` gating | `styles.css` lines 680–696 | Source verified; runtime pending |
+| Reveal default-visible styles and `.js` gating | `assets/css/styles.css` lines 680–696 | Source verified; runtime pending |
 | Homepage `<details>/<summary>` hardening and initial fallback content | PR #1, merge `aefedb1` | Merged; runtime pending |
 | CSS micro-interaction polish and staggered reveal | PR #2, merge `4bfa569` | Merged; runtime pending |
 | Current production target | Vercel deployment record | READY; rendered runtime pending |
@@ -34,9 +41,9 @@
 ## Additional priority defects
 - `options.html` uses `<button>` wrappers containing anchor links in the capital lane accordion and lacks matching disclosure toggle behavior in the current global script.
 - `get-funded.html` only validates basic values and the current wizard step; lacks complete per-field and server-side validation.
-- `app.js` reveal logic has no `IntersectionObserver` feature test or fallback after setting `.js`; keyboard focus for mobile drawer requires audit.
+- `assets/js/app.js` reveal logic has no `IntersectionObserver` feature test or fallback after setting `.js`; keyboard focus for mobile drawer requires audit.
 - Existing `TASKS.md` still marks Task 02/03 in progress despite merged PR #1/#2 and references discontinued Google Jules.
-- No test suite, sitemap, `robots.txt`, or `PROJECT_STATUS.md` is in `main`.
+- No automated test suite, sitemap, or `robots.txt` is in `main`; `PROJECT_STATUS.md` now exists.
 
 ## Known code-level facts versus pending tests
 - **Confirmed from source:** mock application submit, localStorage draft, calculator multipliers, legal placeholders, source-level accordion markup, existing JS event handlers and CSS.
@@ -49,6 +56,8 @@
 Confirm the **legitimate submission destination and operating entity** before activating Get Funded. Preserve the static frontend. A same-origin Vercel Function that validates and durably stores/routes leads in an already approved source-of-truth system is a good default; do not create a new database, CRM pipeline, or webhook until the existing systems are inspected and the specific implementation is approved.
 
 ## Update log
+| 2026-11-19 | Architecture v1.1 | See GitHub commit history | Verify deployment | 10 HTML references validated in source | Funding intake/trust blockers unchanged |
+
 | Date | Task ID | Commit / PR | Deploy | Verification | Open blocker |
 | --- | --- | --- | --- | --- | --- |
 | 2026-11-19 | Read-only baseline audit | `4bfa569` (existing) | `dpl_EMyigt2QXgBf1LGL2UjbxuFmrU8r` READY | GitHub source, PR history, Vercel records, static links | Lead funnel mock; proof/legal/estimates unverified; runtime browser QA pending |
